@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Mateus/Desktop/Lista-Linear-OS-main/Code/dados_processos.h
+
+C:/Users/Mateus/Desktop/Lista-Linear-OS-main/Code/funcoes_teste.c
+
+C:/Users/Mateus/Desktop/Lista-Linear-OS-main/Code/main.c
+stdio.h
+-
+dados_processos.h
+C:/Users/Mateus/Desktop/Lista-Linear-OS-main/Code/dados_processos.h
+
