@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/cmake-build-debug/CMakeFiles/Tp1.dir
 C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+=======
+C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/CMakeFiles/Tp1.dir
+C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+>>>>>>> c2f9170c3263bf4c40bba1d7e753ef6686ae98f8

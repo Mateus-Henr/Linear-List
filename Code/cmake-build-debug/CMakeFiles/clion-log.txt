@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code
 -- The C compiler identification is GNU 8.1.0
 -- Detecting C compiler ABI info
@@ -8,3 +9,9 @@
 -- Configuring done
 -- Generating done
 -- Build files have been written to: C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/cmake-build-debug
+=======
+F:\CLion\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug
+>>>>>>> c2f9170c3263bf4c40bba1d7e753ef6686ae98f8

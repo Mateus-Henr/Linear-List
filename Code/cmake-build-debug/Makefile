@@ -47,19 +47,26 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = F:\CLion\bin\cmake\win\bin\cmake.exe
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = F:\CLion\bin\cmake\win\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug
+=======
+CMAKE_SOURCE_DIR = "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code"
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug"
+>>>>>>> c2f9170c3263bf4c40bba1d7e753ef6686ae98f8
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +74,7 @@ CMAKE_BINARY_DIR = C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-de
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	F:\CLion\bin\cmake\win\bin\cmake.exe -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +84,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	F:\CLion\bin\cmake\win\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -86,9 +93,15 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles 0
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles" "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug\\CMakeFiles\progress.marks"
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles" 0
+>>>>>>> c2f9170c3263bf4c40bba1d7e753ef6686ae98f8
 .PHONY : all
 
 # The main clean target
@@ -128,6 +141,7 @@ Tp1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/build
 .PHONY : Tp1/fast
 
+<<<<<<< HEAD
 MAIN.obj: MAIN.c.obj
 .PHONY : MAIN.obj
 
@@ -151,6 +165,31 @@ MAIN.s: MAIN.c.s
 MAIN.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/MAIN.c.s
 .PHONY : MAIN.c.s
+=======
+funcoes_teste.obj: funcoes_teste.c.obj
+.PHONY : funcoes_teste.obj
+
+# target to build an object file
+funcoes_teste.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/funcoes_teste.c.obj
+.PHONY : funcoes_teste.c.obj
+
+funcoes_teste.i: funcoes_teste.c.i
+.PHONY : funcoes_teste.i
+
+# target to preprocess a source file
+funcoes_teste.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/funcoes_teste.c.i
+.PHONY : funcoes_teste.c.i
+
+funcoes_teste.s: funcoes_teste.c.s
+.PHONY : funcoes_teste.s
+
+# target to generate assembly for a file
+funcoes_teste.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/funcoes_teste.c.s
+.PHONY : funcoes_teste.c.s
+>>>>>>> c2f9170c3263bf4c40bba1d7e753ef6686ae98f8
 
 PROCESSOS.obj: PROCESSOS.c.obj
 .PHONY : PROCESSOS.obj
@@ -185,12 +224,21 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Tp1
+<<<<<<< HEAD
 	@echo ... MAIN.obj
 	@echo ... MAIN.i
 	@echo ... MAIN.s
 	@echo ... PROCESSOS.obj
 	@echo ... PROCESSOS.i
 	@echo ... PROCESSOS.s
+=======
+	@echo ... funcoes_teste.obj
+	@echo ... funcoes_teste.i
+	@echo ... funcoes_teste.s
+	@echo ... main.obj
+	@echo ... main.i
+	@echo ... main.s
+>>>>>>> c2f9170c3263bf4c40bba1d7e753ef6686ae98f8
 .PHONY : help
 
 
