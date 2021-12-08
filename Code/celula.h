@@ -1,6 +1,6 @@
 typedef struct
 {
-    Processo processo;
-    Processo prox*;
-    processo ant*;
+    struct Processo processo;
+    struct Processo prox*;
+    struct Processo ant*;
 } Celula;
