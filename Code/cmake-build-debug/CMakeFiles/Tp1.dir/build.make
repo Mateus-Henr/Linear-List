@@ -52,10 +52,10 @@ RM = "C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Home\Desktop\Tp1
+CMAKE_SOURCE_DIR = C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Home\Desktop\Tp1\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Tp1.dir/depend.make
@@ -65,47 +65,47 @@ include CMakeFiles/Tp1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Tp1.dir/flags.make
 
-CMakeFiles/Tp1.dir/main.c.obj: CMakeFiles/Tp1.dir/flags.make
-CMakeFiles/Tp1.dir/main.c.obj: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Home\Desktop\Tp1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Tp1.dir/main.c.obj"
-	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Tp1.dir\main.c.obj -c C:\Users\Home\Desktop\Tp1\main.c
+CMakeFiles/Tp1.dir/MAIN.c.obj: CMakeFiles/Tp1.dir/flags.make
+CMakeFiles/Tp1.dir/MAIN.c.obj: ../MAIN.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Tp1.dir/MAIN.c.obj"
+	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Tp1.dir\MAIN.c.obj -c C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\MAIN.c
 
-CMakeFiles/Tp1.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Tp1.dir/main.c.i"
-	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Home\Desktop\Tp1\main.c > CMakeFiles\Tp1.dir\main.c.i
+CMakeFiles/Tp1.dir/MAIN.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Tp1.dir/MAIN.c.i"
+	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\MAIN.c > CMakeFiles\Tp1.dir\MAIN.c.i
 
-CMakeFiles/Tp1.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Tp1.dir/main.c.s"
-	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Home\Desktop\Tp1\main.c -o CMakeFiles\Tp1.dir\main.c.s
+CMakeFiles/Tp1.dir/MAIN.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Tp1.dir/MAIN.c.s"
+	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\MAIN.c -o CMakeFiles\Tp1.dir\MAIN.c.s
 
-CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.obj: CMakeFiles/Tp1.dir/flags.make
-CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.obj: ../FUNCOES_TESTE.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Home\Desktop\Tp1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.obj"
-	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Tp1.dir\FUNCOES_TESTE.c.obj -c C:\Users\Home\Desktop\Tp1\FUNCOES_TESTE.c
+CMakeFiles/Tp1.dir/PROCESSOS.c.obj: CMakeFiles/Tp1.dir/flags.make
+CMakeFiles/Tp1.dir/PROCESSOS.c.obj: ../PROCESSOS.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Tp1.dir/PROCESSOS.c.obj"
+	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Tp1.dir\PROCESSOS.c.obj -c C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\PROCESSOS.c
 
-CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.i"
-	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Home\Desktop\Tp1\FUNCOES_TESTE.c > CMakeFiles\Tp1.dir\FUNCOES_TESTE.c.i
+CMakeFiles/Tp1.dir/PROCESSOS.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Tp1.dir/PROCESSOS.c.i"
+	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\PROCESSOS.c > CMakeFiles\Tp1.dir\PROCESSOS.c.i
 
-CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.s"
-	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Home\Desktop\Tp1\FUNCOES_TESTE.c -o CMakeFiles\Tp1.dir\FUNCOES_TESTE.c.s
+CMakeFiles/Tp1.dir/PROCESSOS.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Tp1.dir/PROCESSOS.c.s"
+	C:\PROGRA~2\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\PROCESSOS.c -o CMakeFiles\Tp1.dir\PROCESSOS.c.s
 
 # Object files for target Tp1
 Tp1_OBJECTS = \
-"CMakeFiles/Tp1.dir/main.c.obj" \
-"CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.obj"
+"CMakeFiles/Tp1.dir/MAIN.c.obj" \
+"CMakeFiles/Tp1.dir/PROCESSOS.c.obj"
 
 # External object files for target Tp1
 Tp1_EXTERNAL_OBJECTS =
 
-Tp1.exe: CMakeFiles/Tp1.dir/main.c.obj
-Tp1.exe: CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.obj
+Tp1.exe: CMakeFiles/Tp1.dir/MAIN.c.obj
+Tp1.exe: CMakeFiles/Tp1.dir/PROCESSOS.c.obj
 Tp1.exe: CMakeFiles/Tp1.dir/build.make
 Tp1.exe: CMakeFiles/Tp1.dir/linklibs.rsp
 Tp1.exe: CMakeFiles/Tp1.dir/objects1.rsp
 Tp1.exe: CMakeFiles/Tp1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Home\Desktop\Tp1\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable Tp1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable Tp1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Tp1.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -117,6 +117,6 @@ CMakeFiles/Tp1.dir/clean:
 .PHONY : CMakeFiles/Tp1.dir/clean
 
 CMakeFiles/Tp1.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Home\Desktop\Tp1 C:\Users\Home\Desktop\Tp1 C:\Users\Home\Desktop\Tp1\cmake-build-debug C:\Users\Home\Desktop\Tp1\cmake-build-debug C:\Users\Home\Desktop\Tp1\cmake-build-debug\CMakeFiles\Tp1.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles\Tp1.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Tp1.dir/depend
 

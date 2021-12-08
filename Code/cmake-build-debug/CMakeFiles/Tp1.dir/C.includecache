@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/MAIN.c
+stdio.h
+-
+
+C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/PROCESSOS.c
+PROCESSOS.h
+C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/PROCESSOS.h
+stdlib.h
+-
+time.h
+-
+
+C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/PROCESSOS.h
+

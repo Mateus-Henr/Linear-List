@@ -56,10 +56,10 @@ RM = "C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Home\Desktop\Tp1
+CMAKE_SOURCE_DIR = C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Home\Desktop\Tp1\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Home\Desktop\Tp1\cmake-build-debug\CMakeFiles C:\Users\Home\Desktop\Tp1\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Home\Desktop\Tp1\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -128,53 +128,53 @@ Tp1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/build
 .PHONY : Tp1/fast
 
-FUNCOES_TESTE.obj: FUNCOES_TESTE.c.obj
-.PHONY : FUNCOES_TESTE.obj
+MAIN.obj: MAIN.c.obj
+.PHONY : MAIN.obj
 
 # target to build an object file
-FUNCOES_TESTE.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.obj
-.PHONY : FUNCOES_TESTE.c.obj
+MAIN.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/MAIN.c.obj
+.PHONY : MAIN.c.obj
 
-FUNCOES_TESTE.i: FUNCOES_TESTE.c.i
-.PHONY : FUNCOES_TESTE.i
+MAIN.i: MAIN.c.i
+.PHONY : MAIN.i
 
 # target to preprocess a source file
-FUNCOES_TESTE.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.i
-.PHONY : FUNCOES_TESTE.c.i
+MAIN.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/MAIN.c.i
+.PHONY : MAIN.c.i
 
-FUNCOES_TESTE.s: FUNCOES_TESTE.c.s
-.PHONY : FUNCOES_TESTE.s
+MAIN.s: MAIN.c.s
+.PHONY : MAIN.s
 
 # target to generate assembly for a file
-FUNCOES_TESTE.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.s
-.PHONY : FUNCOES_TESTE.c.s
+MAIN.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/MAIN.c.s
+.PHONY : MAIN.c.s
 
-main.obj: main.c.obj
-.PHONY : main.obj
+PROCESSOS.obj: PROCESSOS.c.obj
+.PHONY : PROCESSOS.obj
 
 # target to build an object file
-main.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/main.c.obj
-.PHONY : main.c.obj
+PROCESSOS.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/PROCESSOS.c.obj
+.PHONY : PROCESSOS.c.obj
 
-main.i: main.c.i
-.PHONY : main.i
+PROCESSOS.i: PROCESSOS.c.i
+.PHONY : PROCESSOS.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/main.c.i
-.PHONY : main.c.i
+PROCESSOS.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/PROCESSOS.c.i
+.PHONY : PROCESSOS.c.i
 
-main.s: main.c.s
-.PHONY : main.s
+PROCESSOS.s: PROCESSOS.c.s
+.PHONY : PROCESSOS.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/main.c.s
-.PHONY : main.c.s
+PROCESSOS.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/PROCESSOS.c.s
+.PHONY : PROCESSOS.c.s
 
 # Help Target
 help:
@@ -185,12 +185,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Tp1
-	@echo ... FUNCOES_TESTE.obj
-	@echo ... FUNCOES_TESTE.i
-	@echo ... FUNCOES_TESTE.s
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... MAIN.obj
+	@echo ... MAIN.i
+	@echo ... MAIN.s
+	@echo ... PROCESSOS.obj
+	@echo ... PROCESSOS.i
+	@echo ... PROCESSOS.s
 .PHONY : help
 
 
