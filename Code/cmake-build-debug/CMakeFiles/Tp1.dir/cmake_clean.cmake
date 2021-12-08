@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.obj"
+  "CMakeFiles/Tp1.dir/funcoes_teste.c.obj"
   "CMakeFiles/Tp1.dir/main.c.obj"
   "Tp1.exe"
   "Tp1.exe.manifest"

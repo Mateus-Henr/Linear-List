@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = F:\CLion\bin\cmake\win\bin\cmake.exe
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = F:\CLion\bin\cmake\win\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Home\Desktop\Tp1
+CMAKE_SOURCE_DIR = C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Home\Desktop\Tp1\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = C:\Users\Home\Desktop\Tp1\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	F:\CLion\bin\cmake\win\bin\cmake.exe -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2021.2.2\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	F:\CLion\bin\cmake\win\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Home\Desktop\Tp1\cmake-build-debug\CMakeFiles C:\Users\Home\Desktop\Tp1\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\cmake-build-debug\CMakeFiles C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Home\Desktop\Tp1\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -128,29 +128,29 @@ Tp1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/build
 .PHONY : Tp1/fast
 
-FUNCOES_TESTE.obj: FUNCOES_TESTE.c.obj
-.PHONY : FUNCOES_TESTE.obj
+funcoes_teste.obj: funcoes_teste.c.obj
+.PHONY : funcoes_teste.obj
 
 # target to build an object file
-FUNCOES_TESTE.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.obj
-.PHONY : FUNCOES_TESTE.c.obj
+funcoes_teste.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/funcoes_teste.c.obj
+.PHONY : funcoes_teste.c.obj
 
-FUNCOES_TESTE.i: FUNCOES_TESTE.c.i
-.PHONY : FUNCOES_TESTE.i
+funcoes_teste.i: funcoes_teste.c.i
+.PHONY : funcoes_teste.i
 
 # target to preprocess a source file
-FUNCOES_TESTE.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.i
-.PHONY : FUNCOES_TESTE.c.i
+funcoes_teste.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/funcoes_teste.c.i
+.PHONY : funcoes_teste.c.i
 
-FUNCOES_TESTE.s: FUNCOES_TESTE.c.s
-.PHONY : FUNCOES_TESTE.s
+funcoes_teste.s: funcoes_teste.c.s
+.PHONY : funcoes_teste.s
 
 # target to generate assembly for a file
-FUNCOES_TESTE.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/FUNCOES_TESTE.c.s
-.PHONY : FUNCOES_TESTE.c.s
+funcoes_teste.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/funcoes_teste.c.s
+.PHONY : funcoes_teste.c.s
 
 main.obj: main.c.obj
 .PHONY : main.obj
@@ -185,9 +185,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Tp1
-	@echo ... FUNCOES_TESTE.obj
-	@echo ... FUNCOES_TESTE.i
-	@echo ... FUNCOES_TESTE.s
+	@echo ... funcoes_teste.obj
+	@echo ... funcoes_teste.i
+	@echo ... funcoes_teste.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
