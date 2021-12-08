@@ -52,10 +52,10 @@ RM = F:\CLion\bin\cmake\win\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code
+CMAKE_SOURCE_DIR = "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\cmake-build-debug
+CMAKE_BINARY_DIR = "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Tp1.dir/depend.make
@@ -67,29 +67,29 @@ include CMakeFiles/Tp1.dir/flags.make
 
 CMakeFiles/Tp1.dir/main.c.obj: CMakeFiles/Tp1.dir/flags.make
 CMakeFiles/Tp1.dir/main.c.obj: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Tp1.dir/main.c.obj"
-	F:\C\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Tp1.dir\main.c.obj -c C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Tp1.dir/main.c.obj"
+	F:\C\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Tp1.dir\main.c.obj -c "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\main.c"
 
 CMakeFiles/Tp1.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Tp1.dir/main.c.i"
-	F:\C\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\main.c > CMakeFiles\Tp1.dir\main.c.i
+	F:\C\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\main.c" > CMakeFiles\Tp1.dir\main.c.i
 
 CMakeFiles/Tp1.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Tp1.dir/main.c.s"
-	F:\C\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\main.c -o CMakeFiles\Tp1.dir\main.c.s
+	F:\C\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\main.c" -o CMakeFiles\Tp1.dir\main.c.s
 
 CMakeFiles/Tp1.dir/funcoes_teste.c.obj: CMakeFiles/Tp1.dir/flags.make
 CMakeFiles/Tp1.dir/funcoes_teste.c.obj: ../funcoes_teste.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Tp1.dir/funcoes_teste.c.obj"
-	F:\C\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Tp1.dir\funcoes_teste.c.obj -c C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\funcoes_teste.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Tp1.dir/funcoes_teste.c.obj"
+	F:\C\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Tp1.dir\funcoes_teste.c.obj -c "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\funcoes_teste.c"
 
 CMakeFiles/Tp1.dir/funcoes_teste.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Tp1.dir/funcoes_teste.c.i"
-	F:\C\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\funcoes_teste.c > CMakeFiles\Tp1.dir\funcoes_teste.c.i
+	F:\C\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\funcoes_teste.c" > CMakeFiles\Tp1.dir\funcoes_teste.c.i
 
 CMakeFiles/Tp1.dir/funcoes_teste.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Tp1.dir/funcoes_teste.c.s"
-	F:\C\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\funcoes_teste.c -o CMakeFiles\Tp1.dir\funcoes_teste.c.s
+	F:\C\mingw32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\funcoes_teste.c" -o CMakeFiles\Tp1.dir\funcoes_teste.c.s
 
 # Object files for target Tp1
 Tp1_OBJECTS = \
@@ -105,7 +105,7 @@ Tp1.exe: CMakeFiles/Tp1.dir/build.make
 Tp1.exe: CMakeFiles/Tp1.dir/linklibs.rsp
 Tp1.exe: CMakeFiles/Tp1.dir/objects1.rsp
 Tp1.exe: CMakeFiles/Tp1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable Tp1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable Tp1.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Tp1.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -117,6 +117,6 @@ CMakeFiles/Tp1.dir/clean:
 .PHONY : CMakeFiles/Tp1.dir/clean
 
 CMakeFiles/Tp1.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\cmake-build-debug C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\cmake-build-debug C:\Users\Mateus\Desktop\Lista-Linear-OS-main\Code\cmake-build-debug\CMakeFiles\Tp1.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code" "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code" "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug" "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug" "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles\Tp1.dir\DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/Tp1.dir/depend
 

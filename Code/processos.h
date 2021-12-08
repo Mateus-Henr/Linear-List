@@ -1,4 +1,0 @@
-#ifndef TP1_PROCESSOS_H
-#define TP1_PROCESSOS_H
-
-#endif //TP1_PROCESSOS_H
