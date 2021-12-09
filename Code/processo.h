@@ -18,7 +18,7 @@ typedef struct
 void inicializa_Tempo(Processo *processo);
 
 // Funções com Processo
-void inicializa_Processo(Processo *processo);
+Processo inicializa_Processo();
 
 
 // Getters e Setters

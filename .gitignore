@@ -56,3 +56,4 @@ dkms.conf
 **/*.iml
 **/out/**
 **/target/**
+**/cmake-build-debug/**

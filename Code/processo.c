@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-void inicializa_Processo(Processo *processo)
+Processo inicializa_Processo()
 {
-    time_t t;
-    srand((unsigned) time(&t));
-    inicializa_Tempo(processo);
-    set_PID(processo,234);
-    set_Prioridade(processo, 2);
+    Processo processo;
+    processo.PID = 1;
+    processo.prioridade = 24;
+
+    return processo;
 }
 
 void inicializa_Tempo(Processo *processo)
