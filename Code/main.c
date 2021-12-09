@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "processo.c"
-//bosta
+
 int main()
 {
     Processo processo = inicializa_Processo();
