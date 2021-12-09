@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6"/>
 	<Project>
-		<Option title="Tp1"/>
+		<Option title="Tp2"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
 		<Option virtualFolders="CMake Files\;"/>
@@ -17,8 +17,8 @@
 					<DistClean command="F:/C/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Tp2">
-				<Option output="C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Tp2.exe" prefix_auto="0" extension_auto="0"/>
+			<Target title="tp">
+				<Option output="C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/tp.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -29,14 +29,14 @@
 					<Add directory="F:/C/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="F:/C/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tp2"/>
+					<Build command="F:/C/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Makefile&quot;  VERBOSE=1 tp"/>
 					<CompileFile command="F:/C/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="F:/C/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="F:/C/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Tp2/fast">
-				<Option output="C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Tp2.exe" prefix_auto="0" extension_auto="0"/>
+			<Target title="tp/fast">
+				<Option output="C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/tp.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -47,7 +47,7 @@
 					<Add directory="F:/C/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="F:/C/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tp2/fast"/>
+					<Build command="F:/C/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Makefile&quot;  VERBOSE=1 tp/fast"/>
 					<CompileFile command="F:/C/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="F:/C/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="F:/C/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -75,13 +75,7 @@
 			</Target>
 		</Build>
 		<Unit filename="C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/main.c">
-			<Option target="Tp2"/>
-		</Unit>
-		<Unit filename="C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/processo.c">
-			<Option target="Tp2"/>
-		</Unit>
-		<Unit filename="C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/processo.h">
-			<Option target="Tp2"/>
+			<Option target="tp"/>
 		</Unit>
 		<Unit filename="C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

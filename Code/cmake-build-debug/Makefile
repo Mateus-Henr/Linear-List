@@ -116,48 +116,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Tp1
+# Target rules for targets named tp
 
 # Build rule for target.
-Tp1: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Tp1
-.PHONY : Tp1
+tp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 tp
+.PHONY : tp
 
 # fast build rule for target.
-Tp1/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/build
-.PHONY : Tp1/fast
-
-funcoes_teste.obj: funcoes_teste.c.obj
-.PHONY : funcoes_teste.obj
-
-# target to build an object file
-funcoes_teste.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/funcoes_teste.c.obj
-.PHONY : funcoes_teste.c.obj
-
-funcoes_teste.i: funcoes_teste.c.i
-.PHONY : funcoes_teste.i
-
-# target to preprocess a source file
-funcoes_teste.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/funcoes_teste.c.i
-.PHONY : funcoes_teste.c.i
-
-funcoes_teste.s: funcoes_teste.c.s
-.PHONY : funcoes_teste.s
-
-# target to generate assembly for a file
-funcoes_teste.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/funcoes_teste.c.s
-.PHONY : funcoes_teste.c.s
+tp/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tp.dir\build.make CMakeFiles/tp.dir/build
+.PHONY : tp/fast
 
 main.obj: main.c.obj
 .PHONY : main.obj
 
 # target to build an object file
 main.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/main.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tp.dir\build.make CMakeFiles/tp.dir/main.c.obj
 .PHONY : main.c.obj
 
 main.i: main.c.i
@@ -165,7 +141,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tp.dir\build.make CMakeFiles/tp.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -173,32 +149,8 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\tp.dir\build.make CMakeFiles/tp.dir/main.c.s
 .PHONY : main.c.s
-
-processo.obj: processo.c.obj
-.PHONY : processo.obj
-
-# target to build an object file
-processo.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/processo.c.obj
-.PHONY : processo.c.obj
-
-processo.i: processo.c.i
-.PHONY : processo.i
-
-# target to preprocess a source file
-processo.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/processo.c.i
-.PHONY : processo.c.i
-
-processo.s: processo.c.s
-.PHONY : processo.s
-
-# target to generate assembly for a file
-processo.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/processo.c.s
-.PHONY : processo.c.s
 
 # Help Target
 help:
@@ -208,16 +160,10 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... Tp1
-	@echo ... funcoes_teste.obj
-	@echo ... funcoes_teste.i
-	@echo ... funcoes_teste.s
+	@echo ... tp
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... processo.obj
-	@echo ... processo.i
-	@echo ... processo.s
 .PHONY : help
 
 

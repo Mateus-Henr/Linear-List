@@ -8,8 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/main.c" "C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/CMakeFiles/Tp1.dir/main.c.obj"
-  "C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/processo.c" "C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/CMakeFiles/Tp1.dir/processo.c.obj"
+  "C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/main.c" "C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/CMakeFiles/tp.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

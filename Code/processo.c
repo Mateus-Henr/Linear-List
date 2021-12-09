@@ -2,21 +2,21 @@
 #include <stdlib.h>
 #include <time.h>
 
-void inicializa_Tempo(Hora *hora)
-{
-    time_t hora_atual;
-    time((time_t *)hora_atual);
-    struct tm *MeuTempo = localtime(&hora_atual);
-    hora->horas = MeuTempo->tm_hour;
-    hora->minutos = MeuTempo->tm_min;
-    hora->segundos = MeuTempo->tm_sec;
-}
-
 void inicializa_Processo(Processo *processo)
 {
-    inicializa_Tempo(processo->hora);
-    processo->PID = rand() % 2000000;
-    processo->prioridade = 1 + rand() % 4;
+    inicializa_Tempo(processo);
+    set_PID(processo,rand() % 2000000);
+    set_Prioridade(processo, 1 + rand() % 4);
+}
+
+void inicializa_Tempo(Processo *processo)
+{
+    time_t hora_cru;
+    struct tm * hora_atual;
+
+    time(&hora_cru);
+    hora_atual = localtime(&hora_cru);
+    set_Hora(processo, hora_atual->tm_hour, hora_atual->tm_min, hora_atual->tm_sec);
 }
 
 int get_PID(Processo *processo)
@@ -44,13 +44,9 @@ int get_Prioridade(Processo *processo)
 
 void set_Hora(Processo *processo, int nova_hora, int novo_minutos, int novo_segundos)
 {
-    Hora *hora_atual = processo->hora;
+    Hora * hora_atual;
+    hora_atual = (Hora *) processo->hora;
     hora_atual->horas = nova_hora;
     hora_atual->minutos = novo_minutos;
     hora_atual->segundos = novo_segundos;
-}
-
-int get_Hora(Processo *processo)
-{
-    return processo->hora;
 }
