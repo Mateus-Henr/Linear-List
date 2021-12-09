@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# Install script for directory: C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code
-=======
 # Install script for directory: C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code
->>>>>>> c2f9170c3263bf4c40bba1d7e753ef6686ae98f8
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,9 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-<<<<<<< HEAD
-file(WRITE "C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
-=======
 file(WRITE "C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
->>>>>>> c2f9170c3263bf4c40bba1d7e753ef6686ae98f8
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

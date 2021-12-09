@@ -1,1 +1,4 @@
-CMakeLists.txt not found in C:\Users\Home\Desktop\Tp1 Select CMakeLists.txt
+F:\CLion\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/cmake-build-debug

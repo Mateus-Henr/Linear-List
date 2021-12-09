@@ -56,17 +56,10 @@ RM = F:\CLion\bin\cmake\win\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-<<<<<<< HEAD
-CMAKE_SOURCE_DIR = C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code
-
-# The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug
-=======
 CMAKE_SOURCE_DIR = "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code"
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug"
->>>>>>> c2f9170c3263bf4c40bba1d7e753ef6686ae98f8
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -93,15 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-<<<<<<< HEAD
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\\CMakeFiles\progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Home\Desktop\Tp1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles 0
-=======
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles" "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug\\CMakeFiles\progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Mateus\Desktop\Study\UniversityProjects\TP 1\Lista-Linear-OS\Code\cmake-build-debug\CMakeFiles" 0
->>>>>>> c2f9170c3263bf4c40bba1d7e753ef6686ae98f8
 .PHONY : all
 
 # The main clean target
@@ -141,31 +128,6 @@ Tp1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/build
 .PHONY : Tp1/fast
 
-<<<<<<< HEAD
-MAIN.obj: MAIN.c.obj
-.PHONY : MAIN.obj
-
-# target to build an object file
-MAIN.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/MAIN.c.obj
-.PHONY : MAIN.c.obj
-
-MAIN.i: MAIN.c.i
-.PHONY : MAIN.i
-
-# target to preprocess a source file
-MAIN.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/MAIN.c.i
-.PHONY : MAIN.c.i
-
-MAIN.s: MAIN.c.s
-.PHONY : MAIN.s
-
-# target to generate assembly for a file
-MAIN.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/MAIN.c.s
-.PHONY : MAIN.c.s
-=======
 funcoes_teste.obj: funcoes_teste.c.obj
 .PHONY : funcoes_teste.obj
 
@@ -189,31 +151,54 @@ funcoes_teste.s: funcoes_teste.c.s
 funcoes_teste.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/funcoes_teste.c.s
 .PHONY : funcoes_teste.c.s
->>>>>>> c2f9170c3263bf4c40bba1d7e753ef6686ae98f8
 
-PROCESSOS.obj: PROCESSOS.c.obj
-.PHONY : PROCESSOS.obj
+main.obj: main.c.obj
+.PHONY : main.obj
 
 # target to build an object file
-PROCESSOS.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/PROCESSOS.c.obj
-.PHONY : PROCESSOS.c.obj
+main.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/main.c.obj
+.PHONY : main.c.obj
 
-PROCESSOS.i: PROCESSOS.c.i
-.PHONY : PROCESSOS.i
+main.i: main.c.i
+.PHONY : main.i
 
 # target to preprocess a source file
-PROCESSOS.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/PROCESSOS.c.i
-.PHONY : PROCESSOS.c.i
+main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/main.c.i
+.PHONY : main.c.i
 
-PROCESSOS.s: PROCESSOS.c.s
-.PHONY : PROCESSOS.s
+main.s: main.c.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-PROCESSOS.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/PROCESSOS.c.s
-.PHONY : PROCESSOS.c.s
+main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/main.c.s
+.PHONY : main.c.s
+
+processo.obj: processo.c.obj
+.PHONY : processo.obj
+
+# target to build an object file
+processo.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/processo.c.obj
+.PHONY : processo.c.obj
+
+processo.i: processo.c.i
+.PHONY : processo.i
+
+# target to preprocess a source file
+processo.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/processo.c.i
+.PHONY : processo.c.i
+
+processo.s: processo.c.s
+.PHONY : processo.s
+
+# target to generate assembly for a file
+processo.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tp1.dir\build.make CMakeFiles/Tp1.dir/processo.c.s
+.PHONY : processo.c.s
 
 # Help Target
 help:
@@ -224,21 +209,15 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Tp1
-<<<<<<< HEAD
-	@echo ... MAIN.obj
-	@echo ... MAIN.i
-	@echo ... MAIN.s
-	@echo ... PROCESSOS.obj
-	@echo ... PROCESSOS.i
-	@echo ... PROCESSOS.s
-=======
 	@echo ... funcoes_teste.obj
 	@echo ... funcoes_teste.i
 	@echo ... funcoes_teste.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
->>>>>>> c2f9170c3263bf4c40bba1d7e753ef6686ae98f8
+	@echo ... processo.obj
+	@echo ... processo.i
+	@echo ... processo.s
 .PHONY : help
 
 

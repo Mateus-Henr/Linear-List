@@ -1,11 +1,13 @@
 #include <stdio.h>
-<<<<<<< HEAD:Code/MAIN.c
-int main() {
-
-=======
-#include "dados_processos.h"
+#include "processo.c"
 
 int main()
 {
+    Processo *processo;
+    inicializa_Processo(processo);
+
+    printf("%d", processo->hora);
+    printf("%d", processo->prioridade);
+
     return 0;
 }
