@@ -10,7 +10,7 @@ typedef struct
 {
     int PID;
     int prioridade;
-    struct Hora *hora;
+    Hora hora;
 
 } Processo;
 

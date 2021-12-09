@@ -1,12 +1,17 @@
 #include "processo.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <time.h>
 
 Processo inicializa_Processo()
 {
     Processo processo;
-    processo.PID = 1;
-    processo.prioridade = 24;
+    time_t t;
+
+    srand((unsigned) time(&t));
+    processo.PID = rand();
+    processo.prioridade = 1 + (rand() % 5);
+    inicializa_Tempo(&processo);
 
     return processo;
 }
@@ -46,10 +51,9 @@ int get_Prioridade(Processo *processo)
 
 void set_Hora(Processo *processo, int nova_hora, int novo_minutos, int novo_segundos)
 {
-    Hora * hora_atual;
-    hora_atual = (Hora *) processo->hora;
-    hora_atual->horas = nova_hora;
-    hora_atual->minutos = novo_minutos;
-    hora_atual->segundos = novo_segundos;
-    processo->hora= (struct Hora *) hora_atual;
+    Hora hora_atual;
+    hora_atual.horas = nova_hora;
+    hora_atual.minutos = novo_minutos;
+    hora_atual.segundos = novo_segundos;
+    processo->hora = hora_atual;
 }
