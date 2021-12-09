@@ -1,3 +1,0 @@
-F:\CLion\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\rp.dir/objects.a
-F:\C\mingw32\bin\ar.exe cr CMakeFiles\rp.dir/objects.a @CMakeFiles\rp.dir\objects1.rsp
-F:\C\mingw32\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\rp.dir/objects.a -Wl,--no-whole-archive -o rp.exe -Wl,--out-implib,librp.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\rp.dir\linklibs.rsp

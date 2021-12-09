@@ -4,9 +4,11 @@
 
 void inicializa_Processo(Processo *processo)
 {
+    time_t t;
+    srand((unsigned) time(&t));
     inicializa_Tempo(processo);
-    set_PID(processo,rand() % 2000000);
-    set_Prioridade(processo, 1 + rand() % 4);
+    set_PID(processo,234);
+    set_Prioridade(processo, 2);
 }
 
 void inicializa_Tempo(Processo *processo)
@@ -49,4 +51,5 @@ void set_Hora(Processo *processo, int nova_hora, int novo_minutos, int novo_segu
     hora_atual->horas = nova_hora;
     hora_atual->minutos = novo_minutos;
     hora_atual->segundos = novo_segundos;
+    processo->hora= (struct Hora *) hora_atual;
 }

@@ -6,19 +6,19 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/main.c
+C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/main.c
 stdio.h
 -
 processo.c
-C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/processo.c
+C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/processo.c
 
-C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/processo.c
+C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/processo.c
 processo.h
-C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/processo.h
+C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/processo.h
 stdlib.h
 -
 time.h
 -
 
-C:/Users/Mateus/Desktop/Study/UniversityProjects/TP 1/Lista-Linear-OS/Code/processo.h
+C:/Users/Home/Desktop/Tp1/Lista-Linear-OS/Code/processo.h
 
