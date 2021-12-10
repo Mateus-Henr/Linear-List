@@ -36,3 +36,5 @@ void set_Prioridade(Processo *processo, int nova_prioridade);
 // Hora
 
 void set_Hora(Processo *processo, int nova_hora, int novo_minuto, int novo_segundo);
+char* Formata_Hora(Hora *hora);
+Hora get_Hora(Processo *processo);

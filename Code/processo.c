@@ -57,3 +57,26 @@ void set_Hora(Processo *processo, int nova_hora, int novo_minutos, int novo_segu
     hora_atual.segundos = novo_segundos;
     processo->hora = hora_atual;
 }
+Hora get_Hora(Processo *processo){
+    return processo->hora;
+}
+char* Formata_Hora(Hora *hora){
+    char horas[2],minu[2],sec[2];
+    char horario[8];
+    itoa(hora->horas,horas,10);
+    itoa(hora->minutos,minu,10);
+    itoa(hora->minutos,sec,10);
+    for(int i=0;i<2;++i){
+        horario[i]= horas[i];
+    }
+    horario[2]= ':';
+    horario[5]= ':';
+    for (int i = 0; i < 2; ++i) {
+        horario[3+i]= minu[i];
+    }
+    for (int i = 0; i < 2; ++i) {
+        horario[6+i]= sec[i];
+    }
+
+    return horario;
+}

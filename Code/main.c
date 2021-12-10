@@ -3,13 +3,13 @@
 //main
 int main()
 {
+    char y[8];
+    Hora x;
     Processo processo = inicializa_Processo();
-
-    printf("PID: %d", get_PID(&processo));
-    printf("\nPrioridade: %d", get_Prioridade(&processo));
-    printf("\nHora: %d", processo.hora.horas);
-    printf("\nMinutos: %d", processo.hora.minutos);
-    printf("\nSegundos: %d", processo.hora.segundos);
-
+    x=get_Hora(&processo);
+    y = Formata_Hora(&x);
+    for (int i = 0; i < 8; ++i) {
+        printf("%c",y[i]);
+    }
     return 0;
 }
