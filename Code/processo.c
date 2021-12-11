@@ -9,8 +9,7 @@ Processo inicializa_processo()
     Processo processo;
     time_t t;
 
-    srand((unsigned) time(&t));
-    processo.PID = rand();
+    processo.PID = -rand();
     processo.prioridade = 1 + (rand() % 5);
     inicializa_tempo(&processo);
 

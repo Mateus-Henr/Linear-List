@@ -8,7 +8,7 @@
 
 typedef struct
 {
-    int horas;;
+    int horas;
     int minutos;
     int segundos;
 } Hora;
