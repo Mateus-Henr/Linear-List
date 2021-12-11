@@ -67,11 +67,13 @@ Hora get_hora(Processo *processo)
 char *formata_hora(Hora *hora)
 {
     char *hora_formatada = malloc(8);
+
+    // Quando nn conseguir alocar a memória
     if (!hora_formatada)
     {
         return NULL;
     }
 
-    sprintf(hora_formatada, "%d:%d:%d", hora->horas, hora->minutos, hora->segundos);
+    sprintf(hora_formatada, "%02d:%02d:%02d", hora->horas, hora->minutos, hora->segundos);
     return hora_formatada;
 }
