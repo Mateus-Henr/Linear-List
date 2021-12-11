@@ -24,7 +24,9 @@ void inicializa_tempo(Processo *processo)
 
     time(&hora_cru);
     hora_atual = localtime(&hora_cru);
-    set_hora(processo, hora_atual->tm_hour, hora_atual->tm_min, hora_atual->tm_sec);
+    processo->hora.horas = hora_atual->tm_hour;
+    processo->hora.minutos = hora_atual->tm_min;
+    processo->hora.segundos = hora_atual->tm_sec;
 }
 
 int get_PID(Processo *processo)
@@ -43,12 +45,10 @@ void set_prioridade(Processo *processo, int nova_prioridade)
     processo->prioridade = nova_prioridade;
 }
 
-int get_Prioridade(Processo *processo)
+int get_prioridade(Processo *processo)
 {
     return processo->prioridade;
 }
-
-//Hora de Criação
 
 void set_hora(Processo *processo, int nova_hora, int novo_minutos, int novo_segundos)
 {
