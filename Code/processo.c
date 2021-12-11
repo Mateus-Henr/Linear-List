@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <string.h>
 
 Processo inicializa_Processo()
 {
@@ -62,21 +63,14 @@ Hora get_Hora(Processo *processo){
 }
 char* Formata_Hora(Hora *hora){
     char horas[2],minu[2],sec[2];
-    char horario[8];
+    char buffer[CHAR_MAX], buffer2[CHAR_MAX], buffer3[CHAR_MAX], buffer4[CHAR_MAX];
     itoa(hora->horas,horas,10);
     itoa(hora->minutos,minu,10);
     itoa(hora->minutos,sec,10);
-    for(int i=0;i<2;++i){
-        horario[i]= horas[i];
-    }
-    horario[2]= ':';
-    horario[5]= ':';
-    for (int i = 0; i < 2; ++i) {
-        horario[3+i]= minu[i];
-    }
-    for (int i = 0; i < 2; ++i) {
-        horario[6+i]= sec[i];
-    }
-
-    return horario;
+    strcat(strcpy(buffer, horas), ":");
+    strcat(strcpy(buffer2, buffer), minu);
+    strcat(strcpy(buffer3, buffer2), ":");
+    strcat(strcpy(buffer4, buffer3), sec);
+    printf("%s",buffer4);
+    return buffer4;
 }
