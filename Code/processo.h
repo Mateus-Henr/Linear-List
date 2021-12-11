@@ -15,10 +15,10 @@ typedef struct
 } Processo;
 
 // Funções de tempo
-void inicializa_Tempo(Processo *processo);
+void inicializa_tempo(Processo *processo);
 
 // Funções com Processo
-Processo inicializa_Processo();
+Processo inicializa_processo();
 
 
 // Getters e Setters
@@ -29,12 +29,13 @@ int get_PID(Processo *processo);
 void set_PID(Processo *processo, int novo_PID);
 
 // Prioridade
-int get_Prioridade(Processo *processo);
+int get_prioridade(Processo *processo);
 
-void set_Prioridade(Processo *processo, int nova_prioridade);
+void set_prioridade(Processo *processo, int nova_prioridade);
 
 // Hora
+void set_hora(Processo *processo, int nova_hora, int novo_minuto, int novo_segundo);
 
-void set_Hora(Processo *processo, int nova_hora, int novo_minuto, int novo_segundo);
-char* Formata_Hora(Hora *hora);
-Hora get_Hora(Processo *processo);
+char *formata_hora(Hora *hora);
+
+Hora get_hora(Processo *processo);

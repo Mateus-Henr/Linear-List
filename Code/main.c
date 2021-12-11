@@ -1,13 +1,17 @@
 #include <stdio.h>
 #include "processo.c"
-//main
+
 int main()
 {
-    char y[8];
-    Hora x;
-    Processo processo = inicializa_Processo();
-    x=get_Hora(&processo);
-    Formata_Hora(&x);
+    Hora hora;
+
+    Processo processo = inicializa_processo();
+    hora = get_hora(&processo);
+    char * hora_formatada = formata_hora(&hora);
+    if (hora_formatada)
+    {
+        printf("%s", hora_formatada);
+    }
 
     return 0;
 }
