@@ -95,7 +95,7 @@ void insere_na_lista(Lista *lista, Processo *processo)
     }
 
     lista->numCelOcupados += 1;
-
+    coloca_em_ordem(lista);
 }
 
 void remove_da_lista(Lista *lista)
