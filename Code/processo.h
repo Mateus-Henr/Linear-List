@@ -8,37 +8,26 @@
 
 typedef struct
 {
-    int horas;
-    int minutos;
-    int segundos;
-} Hora;
-
-typedef struct
-{
-    int PID;
-    int prioridade;
-    Hora hora;
+    unsigned int PID;
+    unsigned int prioridade;
+    struct tm *hora;
 
 } Processo;
 
-Processo inicializa_processo();
+Processo *inicializa_processo();
 
 void inicializa_tempo(Processo *processo);
 
 // Retorna hora no formato "00:00:00"
-char *formata_hora(Hora *hora);
+char *formata_hora(Processo *processo);
 
 
 // Getters e Setters
 
-int get_PID(Processo *processo);
+unsigned int get_PID(Processo *processo);
 
-void set_PID(Processo *processo, int novo_PID);
+void set_PID(Processo *processo, unsigned int novo_PID);
 
-int get_prioridade(Processo *processo);
+unsigned int get_prioridade(Processo *processo);
 
-void set_prioridade(Processo *processo, int nova_prioridade);
-
-Hora get_hora(Processo *processo);
-
-void set_hora(Processo *processo, int nova_hora, int novo_minuto, int novo_segundo);
+void set_prioridade(Processo *processo, unsigned int nova_prioridade);

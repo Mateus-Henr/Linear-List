@@ -9,17 +9,17 @@ typedef struct
 
 typedef struct
 {
-    int tamanho;
+    unsigned int tamanho;
     struct Celula *celulas;
-    int primeiro;
-    int ultimo;
-    int numCelOcupados;
+    unsigned int primeiro;
+    unsigned int ultimo;
+    unsigned int numCelOcupados;
 } Lista;
 
-Lista inicializa_lista(int tamanho);
+Lista *inicializa_lista(unsigned int tamanho);
 
-int get_numCelOcupados(Lista *lista);
+unsigned int get_numCelOcupados(Lista *lista);
 
-void insere_na_lista(Lista *lista, Processo * processo);
+void insere_na_lista(Lista *lista, Processo *processo);
 
 void remove_da_lista(Lista *lista);
