@@ -18,10 +18,8 @@ typedef struct
 
 Lista inicializa_lista(int tamanho);
 
-Celula inicializa_celula(Processo *processo);
+int get_numCelOcupados(Lista *lista);
 
-int get_celulas_ocupadas(Lista *lista);
-
-void insere_na_lista(Lista *lista, Celula *celula);
+void insere_na_lista(Lista *lista, Processo * processo);
 
 void remove_da_lista(Lista *lista);

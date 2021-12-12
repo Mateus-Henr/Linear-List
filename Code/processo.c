@@ -7,7 +7,6 @@
 Processo inicializa_processo()
 {
     Processo processo;
-    time_t t;
 
     processo.PID = -rand();
     processo.prioridade = 1 + (rand() % 5);
@@ -62,6 +61,7 @@ Hora get_hora(Processo *processo)
 {
     return processo->hora;
 }
+
 
 char *formata_hora(Hora *hora)
 {
