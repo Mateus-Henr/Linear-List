@@ -24,6 +24,11 @@ void inicializa_tempo(Processo *processo)
     processo->hora = hora_atual;
 }
 
+char *get_hora(Processo *processo)
+{
+    return asctime(processo->hora);
+}
+
 unsigned int get_PID(Processo *processo)
 {
     return processo->PID;
@@ -34,18 +39,12 @@ void set_PID(Processo *processo, unsigned int novo_PID)
     processo->PID = novo_PID;
 }
 
-//Prioridade
-void set_prioridade(Processo *processo, unsigned int nova_prioridade)
-{
-    processo->prioridade = nova_prioridade;
-}
-
 unsigned int get_prioridade(Processo *processo)
 {
     return processo->prioridade;
 }
 
-char *formata_hora(Processo *processo)
+void set_prioridade(Processo *processo, unsigned int nova_prioridade)
 {
-    return asctime(processo->hora);
+    processo->prioridade = nova_prioridade;
 }
