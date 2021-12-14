@@ -15,8 +15,8 @@ Lista *inicializa_lista(unsigned int tamanho)
         if (posicao == 0)
         {
             celula.ant = -1;
-            lista->primeiro = 0;
-            lista->ultimo = 0;
+            lista->primeiro = -1;
+            lista->ultimo = -1;
         }
         else
         {
@@ -48,7 +48,7 @@ unsigned int get_numCelOcupados(Lista *lista)
     return lista->numCelOcupados;
 }
 
-void coloca_em_ordem(Lista *lista, Processo *processo)
+void insere(Lista *lista, Processo *processo)
 {
     int in = 0, meio = 0, cont, comand, salvador;
     Processo anterior, proxim, save, save2;
@@ -78,6 +78,14 @@ void coloca_em_ordem(Lista *lista, Processo *processo)
             }
 
         }
+        if(celulas_usadas==0){
+            celulas[lista->celulasDisp].prox=-1;
+            inicializa_processo(celulas[lista->celulasDisp].processo);
+            celulas_usadas++;
+            lista->celulasDisp++;
+            celulas[lista->celulasDisp].ant=-1;
+
+        }
         anterior = copia_celulas[meio].processo;
         proxim = copia_celulas[meio++].processo;
         if (processo->PID > anterior.PID)
@@ -85,16 +93,18 @@ void coloca_em_ordem(Lista *lista, Processo *processo)
             if (processo->PID > proxim.PID) { comand = 1; }
             else
             {
-                save = copia_celulas[meio++].processo;
-                copia_celulas[meio++].processo = processo;
+
 
                 for (int i = copia_celulas[meio++].ant + 1; i < celulas_usadas; i++)
                 {
-                    save2 = copia_celulas[i].processo = processo;
-                    copia_celulas[i].processo = processo = save;
-                    save = save2;
+
 
                 }
+
+                lista->celulasDisp++;
+                celulas_usadas++;
+
+
                 copia_celulas[celulas_usadas].prox = celulas_usadas;
                 copia_celulas[celulas_usadas + 1].prox = -1;
                 copia_celulas[celulas_usadas + 1].ant = celulas_usadas;
@@ -107,4 +117,10 @@ void coloca_em_ordem(Lista *lista, Processo *processo)
 
 void remove_da_lista(Lista *lista)
 {
+    int in = 0, meio = 0, cont, comand, salvador;
+    Processo anterior, proxim, save, save2;
+    unsigned int celulas_usadas = get_numCelOcupados(lista);
+    Celula *celulas = (Celula) lista->celulas;
+
+    free(celulas[lista->primeiro].processo);
 }

@@ -2,7 +2,7 @@
 
 typedef struct
 {
-    Processo processo;
+    Processo *processo;
     int prox;
     int ant;
 } Celula;
@@ -21,6 +21,6 @@ Lista *inicializa_lista(unsigned int tamanho);
 
 unsigned int get_numCelOcupados(Lista *lista);
 
-void insere_na_lista(Lista *lista, Processo *processo);
+void insere(Lista *lista, Processo *processo);
 
 void remove_da_lista(Lista *lista);
