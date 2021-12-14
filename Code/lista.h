@@ -13,6 +13,7 @@ typedef struct
     struct Celula *celulas;
     unsigned int primeiro;
     unsigned int ultimo;
+    unsigned int celulasDisp;
     unsigned int numCelOcupados;
 } Lista;
 

@@ -3,11 +3,42 @@
 
 Lista *inicializa_lista(unsigned int tamanho)
 {
+    // Alocando espaços para as estruturas.
     Lista *lista = (Lista *) malloc(sizeof(Lista));
     lista->celulas = (struct Celula *) malloc(tamanho * sizeof(Celula));
 
+    // Inicialização das células vazias.
+    for (int posicao = 0; posicao < tamanho; posicao++)
+    {
+        Celula celula;
+
+        if (posicao == 0)
+        {
+            celula.ant = -1;
+            lista->primeiro = 0;
+            lista->ultimo = 0;
+        }
+        else
+        {
+            celula.ant = posicao;
+            lista->ultimo = posicao;
+        }
+
+        if (posicao == (tamanho - 1))
+        {
+            celula.prox = -1;
+        }
+        else
+        {
+            celula.prox = posicao++;
+        }
+
+        ((Celula *) lista->celulas)[posicao] = celula;
+    }
+
     lista->numCelOcupados = 0;
     lista->tamanho = tamanho;
+    lista->celulasDisp = 0;
 
     return lista;
 }
@@ -17,85 +48,61 @@ unsigned int get_numCelOcupados(Lista *lista)
     return lista->numCelOcupados;
 }
 
-void coloca_em_ordem(Lista *lista)
+void coloca_em_ordem(Lista *lista, Processo *processo)
 {
-    int flag = 0;
+    int in = 0, meio = 0, cont, comand, salvador;
+    Processo anterior, proxim, save, save2;
     unsigned int celulas_usadas = get_numCelOcupados(lista);
-
-    Celula *celulas = (Celula *) lista->celulas;
+    Celula *celulas = (Celula) lista->celulas;
     Celula copia_celulas[celulas_usadas];
 
     for (int i = 0; i < celulas_usadas; i++)
     {
         copia_celulas[i] = celulas[i];
     }
-
-    while (!flag)
+    while (in == 0)
     {
-        flag = 1;
-        for (int i = 0; i < (celulas_usadas - 1); i++)
+        if (cont == 0)
         {
-            Processo *atual = &copia_celulas[i].processo;
-            Processo *prox = &copia_celulas[i + 1].processo;
-            Processo temp;
-            if (get_PID(atual) > get_PID(prox))
+            meio = celulas_usadas / 2;
+        }
+        else
+        {
+            if (comand == 1)
             {
-                temp = *(atual);
-                *(atual) = *(prox);
-                *(prox) = temp;
-                flag = 0;
+                meio = meio + (meio / 2);
+            }
+            else
+            {
+                meio = meio / 2;
+            }
+
+        }
+        anterior = copia_celulas[meio].processo;
+        proxim = copia_celulas[meio++].processo;
+        if (processo->PID > anterior.PID)
+        {
+            if (processo->PID > proxim.PID) { comand = 1; }
+            else
+            {
+                save = copia_celulas[meio++].processo;
+                copia_celulas[meio++].processo = processo;
+
+                for (int i = copia_celulas[meio++].ant + 1; i < celulas_usadas; i++)
+                {
+                    save2 = copia_celulas[i].processo = processo;
+                    copia_celulas[i].processo = processo = save;
+                    save = save2;
+
+                }
+                copia_celulas[celulas_usadas].prox = celulas_usadas;
+                copia_celulas[celulas_usadas + 1].prox = -1;
+                copia_celulas[celulas_usadas + 1].ant = celulas_usadas;
+                in = 1;
             }
         }
+        if (processo->PID < anterior.PID) { comand = 0; }
     }
-
-    for (int i = 0; i < celulas_usadas; i++)
-    {
-        for (int j = 0; j < celulas_usadas; j++)
-        {
-            if (copia_celulas[i].processo.PID == celulas[j].processo.PID)
-            {
-                celulas[j].ant = i;
-
-                if (i == 0)
-                {
-                    celulas[j].ant = -1;
-                    lista->primeiro = j;
-                }
-
-                if (i == celulas_usadas - 1)
-                {
-                    celulas[j].prox = -1;
-                    lista->ultimo = j;
-                }
-                else
-                {
-                    celulas[j].prox = i + 1;
-                }
-                break;
-            }
-        }
-    }
-}
-
-void insere_na_lista(Lista *lista, Processo *processo)
-{
-    Celula celula;
-    unsigned int posicao = get_numCelOcupados(lista);
-
-    celula.processo = *processo;
-    celula.ant = -1;
-    celula.prox = -1;
-
-    ((Celula *) lista->celulas)[posicao] = celula;
-
-    if (lista->numCelOcupados == 0)
-    {
-        lista->primeiro = posicao;
-        lista->ultimo = posicao;
-    }
-
-    lista->numCelOcupados += 1;
-    coloca_em_ordem(lista);
 }
 
 void remove_da_lista(Lista *lista)
