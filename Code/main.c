@@ -5,25 +5,6 @@ Processo *criar_processo();
 
 int main()
 {
-    // ----------------------------------------- TESTE PROCESSO --------------------------------------------------------
-
-//    Processo processo = inicializa_processo();
-//    Hora hora = get_hora(&processo);
-//    char *hora_formatada = formata_hora(&hora);
-//
-//
-//    if (hora_formatada)
-//    {
-//        printf("A process has been created:");
-//        printf("\nCode: %d", get_PID(&processo));
-//        printf("\nPriority: %d", get_prioridade(&processo));
-//        printf("\nCreation time: %s", hora_formatada);
-//        free(hora_formatada);
-//    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-
     // ---------------------------------------- TESTE LISTA ------------------------------------------------------------
 
     Lista *lista = inicializa_lista(1000);
@@ -31,7 +12,7 @@ int main()
     for (int i = 0; i < lista->tamanho; i++)
     {
         Processo *processo_lista = criar_processo();
-        insere_na_lista(lista, processo_lista);
+        coloca_em_ordem(lista, processo_lista);
         free(processo_lista);
     }
 
