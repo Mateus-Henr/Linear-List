@@ -48,79 +48,98 @@ unsigned int get_numCelOcupados(Lista *lista)
     return lista->numCelOcupados;
 }
 
-void insere(Lista *lista, Processo *processo)
+void insere_na_lista(Lista *lista)
 {
-    int in = 0, meio = 0, cont, comand, salvador;
-    Processo anterior, proxim, save, save2;
+    unsigned int flag = 0;
+    unsigned int meio_lista = 0;
     unsigned int celulas_usadas = get_numCelOcupados(lista);
-    Celula *celulas = (Celula) lista->celulas;
-    Celula copia_celulas[celulas_usadas];
+    unsigned int loop_atual = 0;
+    unsigned int esquerda_ou_direita = 0;
+    Processo *processo;
 
-    for (int i = 0; i < celulas_usadas; i++)
+    Celula *celulas = (Celula *) lista->celulas;
+
+    // Procura binária
+    while (!flag)
     {
-        copia_celulas[i] = celulas[i];
-    }
-    while (in == 0)
-    {
-        if (cont == 0)
+        // Primeiro loop
+        if (loop_atual == 0)
         {
-            meio = celulas_usadas / 2;
+            meio_lista = celulas_usadas / 2;
         }
         else
         {
-            if (comand == 1)
+            // esquerda_ou_direita | direita = 0 & esquerda = 1
+            if (esquerda_ou_direita == 1)
             {
-                meio = meio + (meio / 2);
+                meio_lista = meio_lista + (meio_lista / 2);
             }
             else
             {
-                meio = meio / 2;
+                meio_lista = meio_lista / 2;
             }
-
         }
-        if(celulas_usadas==0){
-            celulas[lista->celulasDisp].prox=-1;
-            inicializa_processo(celulas[lista->celulasDisp].processo);
+
+        // Adicionando a primeira célula
+        if (celulas_usadas == 0)
+        {
+            // Colocando "-1" pois é a primeira célula.
+            celulas[lista->celulasDisp].prox = -1;
+            celulas[lista->celulasDisp].ant = -1;
+
+            // Inicializando processo.
+            processo = inicializa_processo();
+
+            // Atualizando valores quantidade de células.
             celulas_usadas++;
             lista->celulasDisp++;
-            celulas[lista->celulasDisp].ant=-1;
-
         }
-        anterior = copia_celulas[meio].processo;
-        proxim = copia_celulas[meio++].processo;
-        if (*processo->PID > anterior.PID)
+
+        Processo anterior = *celulas[meio_lista].processo;
+        Processo proximo = *celulas[meio_lista++].processo;
+
+        if (get_PID(processo) > anterior.PID)
         {
-            if (*processo->PID > proxim.PID) { comand = 1; }
+            if (get_PID(processo) > proximo.PID)
+            {
+                esquerda_ou_direita = 1;
+            }
             else
             {
-
-
-                for (int i = copia_celulas[meio++].ant + 1; i < celulas_usadas; i++)
+                for (int i = celulas[meio_lista].ant + 1; i < celulas_usadas; i++)
                 {
-
 
                 }
 
+                // Alterando os indexes na célula atual.
+                celulas[celulas_usadas].ant = (int) celulas_usadas - 1;
+                celulas[celulas_usadas].prox = (int) celulas_usadas;
+
+                // Alterando os indexes na próxima célula.
+                celulas[celulas_usadas + 1].ant = (int) celulas_usadas;
+                celulas[celulas_usadas + 1].prox = -1;
+
+                // Atualizando valores quantidade de células.
                 lista->celulasDisp++;
                 celulas_usadas++;
-
-
-                copia_celulas[celulas_usadas].prox = celulas_usadas;
-                copia_celulas[celulas_usadas + 1].prox = -1;
-                copia_celulas[celulas_usadas + 1].ant = celulas_usadas;
-                in = 1;
+                flag = 1;
             }
         }
-        if (*processo->PID < anterior.PID) { comand = 0; }
+        else
+        {
+            esquerda_ou_direita = 0;
+        }
+
+        loop_atual++;
     }
 }
 
 void remove_da_lista(Lista *lista)
 {
-    int in = 0, meio = 0, cont, comand, salvador;
-    Processo anterior, proxim, save, save2;
-    unsigned int celulas_usadas = get_numCelOcupados(lista);
-    Celula *celulas = (Celula) lista->celulas;
+    Celula *celulas = (Celula *) lista->celulas;
 
     free(celulas[lista->primeiro].processo);
+    celulas[lista->primeiro].prox = (int) lista->celulasDisp;
+    celulas[lista->primeiro + 1].ant = -1;
+    lista->celulasDisp = lista->primeiro;
 }

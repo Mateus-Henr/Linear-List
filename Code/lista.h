@@ -21,6 +21,6 @@ Lista *inicializa_lista(unsigned int tamanho);
 
 unsigned int get_numCelOcupados(Lista *lista);
 
-void insere(Lista *lista, Processo *processo);
+void insere_na_lista(Lista *lista);
 
 void remove_da_lista(Lista *lista);
