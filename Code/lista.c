@@ -100,7 +100,9 @@ void insere_na_lista(Lista *lista)
         //         Dessa forma será colocado com indexes de final de lista.
         unsigned int encontrou_posicao = 0;
 
-        int temp_ultima_celula;
+        // Essa variável será usada para lembrar o valor da célula passada para tirar o -1 e apontar para
+        // a nova célula se a mesma vier no final.
+        int temp_ultima_celula = 0;
 
         // Enquanto elemento atual não for o último elemento.
         while (elemento_atual != FINAL_DA_LISTA)
@@ -158,15 +160,27 @@ void insere_na_lista(Lista *lista)
                     {
                         // Se a próxima célula não existir teremos o final da lista.
                         temp_prox = FINAL_DA_LISTA;
+                        break;
                     }
 
                     // Passando os valores para os próximos elementos.
                     celulas[elemento_atual].ant = temp_ant;
                     celulas[elemento_atual].prox = temp_prox;
 
+                    // JEITO CAGADO JOAO ARRUMA
+                    if (temp_prox != -1)
+                    {
+                        temp_ultima_celula = temp_prox;
+                    }
+
                     // Mudando o valor do elemento atual de forma a ele pegar o próximo index.
                     elemento_atual = celulas[temp_prox].prox;
                 }
+            }
+
+            if (temp_ultima_celula == 0)
+            {
+                temp_ultima_celula = elemento_atual;
             }
 
             // Condição para checkar se o valor já não é o fim da lista (devido ao loop acima).
@@ -188,8 +202,7 @@ void insere_na_lista(Lista *lista)
             else
             {
                 // Definindo o novo index para o elemento que ERA o último.
-                celulas[celulas[lista->celulasDisp].ant].prox = (int) lista->ultimo;
-                printf("%d\n", celulas[celulas[lista->celulasDisp].ant].prox);
+                celulas[temp_ultima_celula].prox = (int) lista->ultimo;
             }
 
             // Coloca indexes do final da lista já que não foram encontrados elementos menores.
