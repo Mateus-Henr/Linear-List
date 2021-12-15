@@ -1,6 +1,11 @@
 #include "lista.h"
 #include <stdlib.h>
 
+#define FINAL_DA_LISTA -1
+#define INICIO_DA_LISTA -1
+
+void imprime_celulas(Lista *lista);
+
 Lista *inicializa_lista(unsigned int tamanho)
 {
     // Alocando espaços para as estruturas.
@@ -14,9 +19,8 @@ Lista *inicializa_lista(unsigned int tamanho)
 
         if (posicao == 0)
         {
-            celula.ant = -1;
-            lista->primeiro = -1;
-            lista->ultimo = -1;
+            celula.ant = INICIO_DA_LISTA;
+            lista->primeiro = 0;
         }
         else
         {
@@ -26,13 +30,14 @@ Lista *inicializa_lista(unsigned int tamanho)
 
         if (posicao == (tamanho - 1))
         {
-            celula.prox = -1;
+            celula.prox = FINAL_DA_LISTA;
         }
         else
         {
-            celula.prox = posicao++;
+            celula.prox = posicao + 1;
         }
 
+        celula.processo = NULL;
         ((Celula *) lista->celulas)[posicao] = celula;
     }
 
@@ -48,90 +53,154 @@ unsigned int get_numCelOcupados(Lista *lista)
     return lista->numCelOcupados;
 }
 
-void insere_na_lista(Lista *lista)
+int get_celula_disponivel(Lista *lista)
 {
-    unsigned int flag = 0;
-    unsigned int meio_lista = 0;
-    unsigned int celulas_usadas = get_numCelOcupados(lista);
-    unsigned int loop_atual = 0;
-    unsigned int esquerda_ou_direita = 0;
-    Processo *processo;
-
+    int celula_disponivel = -1;
     Celula *celulas = (Celula *) lista->celulas;
 
-    // Procura binária
-    while (!flag)
+    for (int i = 0; i < lista->tamanho; i++)
     {
-        // Primeiro loop
-        if (loop_atual == 0)
+        if (celulas[i].processo == NULL)
         {
-            meio_lista = celulas_usadas / 2;
+            celula_disponivel = i;
+            break;
         }
-        else
+    }
+
+    return celula_disponivel;
+}
+
+void insere_na_lista(Lista *lista)
+{
+    Processo *processo_para_adicionar = inicializa_processo();
+    Celula *celulas = (Celula *) lista->celulas;
+
+    lista->celulasDisp = get_celula_disponivel(lista);
+    celulas[lista->celulasDisp].processo = processo_para_adicionar;
+    lista->ultimo = lista->celulasDisp;
+
+    // Se for o primeiro elemento sendo adicionado na lista.
+    if (get_numCelOcupados(lista) == 0)
+    {
+        celulas[lista->celulasDisp].ant = INICIO_DA_LISTA;
+        celulas[lista->celulasDisp].prox = FINAL_DA_LISTA;
+
+        // Como só temos um elemento apontaremos para esse único elemento.
+        lista->primeiro = lista->celulasDisp;
+        lista->ultimo = lista->celulasDisp;
+    }
+    else // Executa a partir do segundo elemento.
+    {
+        // Começando a partir do primeiro elemento.
+        int elemento_atual = (int) lista->primeiro;
+
+        // Esse valor é usado da seguinte forma:
+        // true = existe um valor na lista maior que o elemento que será adicionado.
+        // false = não existe um valor na lista maior que o elemento que será adicionado.
+        //         Dessa forma será colocado com indexes de final de lista.
+        unsigned int encontrou_posicao = 0;
+
+        int temp_ultima_celula;
+
+        // Enquanto elemento atual não for o último elemento.
+        while (elemento_atual != FINAL_DA_LISTA)
         {
-            // esquerda_ou_direita | direita = 0 & esquerda = 1
-            if (esquerda_ou_direita == 1)
+            // Pegando o processo inicial para comparar com o processo a ser inserido.
+            Processo *processo_atual = celulas[elemento_atual].processo;
+
+
+            // --------------------------- Encontrado a posição para o elemento. --------------------------- /
+            // Comparando para ver se existe algum elemento maior do que o que será adicionado.
+            if (get_PID(processo_atual) > get_PID(processo_para_adicionar))
             {
-                meio_lista = meio_lista + (meio_lista / 2);
-            }
-            else
-            {
-                meio_lista = meio_lista / 2;
-            }
-        }
+                encontrou_posicao = 1;
 
-        // Adicionando a primeira célula
-        if (celulas_usadas == 0)
-        {
-            // Colocando "-1" pois é a primeira célula.
-            celulas[lista->celulasDisp].prox = -1;
-            celulas[lista->celulasDisp].ant = -1;
-
-            // Inicializando processo.
-            processo = inicializa_processo();
-
-            // Atualizando valores quantidade de células.
-            celulas_usadas++;
-            lista->celulasDisp++;
-        }
-
-        Processo anterior = *celulas[meio_lista].processo;
-        Processo proximo = *celulas[meio_lista++].processo;
-
-        if (get_PID(processo) > anterior.PID)
-        {
-            if (get_PID(processo) > proximo.PID)
-            {
-                esquerda_ou_direita = 1;
-            }
-            else
-            {
-                for (int i = celulas[meio_lista].ant + 1; i < celulas_usadas; i++)
+                // Alterando o valor da nova célula com o valor da célula maior que encontramos.
+                if (celulas[elemento_atual].ant == INICIO_DA_LISTA)
                 {
-
+                    // Definindo os indexes corretos caso o elemento se torne o primeiro da lista.
+                    celulas[lista->celulasDisp].ant = INICIO_DA_LISTA;
+                    celulas[lista->celulasDisp].prox = celulas[elemento_atual].prox;
+                }
+                else
+                {
+                    // Definindo os indexes corretos caso o elemento entre em qualquer outro lugar da lista.
+                    // É importante lembrar que a posição não poderá ser o último da lista, pois não haverá um elemento
+                    // maior do que ele, em outras palavras, a condição "Parent" não será verdadeira.
+                    celulas[lista->celulasDisp].ant = celulas[elemento_atual].ant;
+                    celulas[lista->celulasDisp].prox = celulas[elemento_atual].prox;
                 }
 
-                // Alterando os indexes na célula atual.
-                celulas[celulas_usadas].ant = (int) celulas_usadas - 1;
-                celulas[celulas_usadas].prox = (int) celulas_usadas;
+                // Inicializando variáveis para salvar os valores, para editar os indexes dos elementos que vem depois
+                // do elemento adicionado.
+                int temp_ant;
+                int temp_prox;
 
-                // Alterando os indexes na próxima célula.
-                celulas[celulas_usadas + 1].ant = (int) celulas_usadas;
-                celulas[celulas_usadas + 1].prox = -1;
+                // Loop para organizar elementos que vem depois do adicionado.
+                while (elemento_atual != FINAL_DA_LISTA)
+                {
+                    // Checkando se a próxima célula existe.
+                    if (celulas[celulas[celulas[elemento_atual].prox].prox].processo != NULL)
+                    {
+                        temp_ant = celulas[celulas[elemento_atual].prox].prox;
+                    }
+                    else
+                    {
+                        break;
+                    }
 
-                // Atualizando valores quantidade de células.
-                lista->celulasDisp++;
-                celulas_usadas++;
-                flag = 1;
+                    // Checkando se a célula depois da próxima existe para mudar o valor.
+                    if (celulas[celulas[celulas[celulas[elemento_atual].prox].prox].prox].processo != NULL)
+                    {
+                        temp_prox = celulas[celulas[celulas[elemento_atual].prox].prox].prox;
+                    }
+                    else
+                    {
+                        // Se a próxima célula não existir teremos o final da lista.
+                        temp_prox = FINAL_DA_LISTA;
+                    }
+
+                    // Passando os valores para os próximos elementos.
+                    celulas[elemento_atual].ant = temp_ant;
+                    celulas[elemento_atual].prox = temp_prox;
+
+                    // Mudando o valor do elemento atual de forma a ele pegar o próximo index.
+                    elemento_atual = celulas[temp_prox].prox;
+                }
+            }
+
+            // Condição para checkar se o valor já não é o fim da lista (devido ao loop acima).
+            if (elemento_atual != FINAL_DA_LISTA)
+            {
+                // Mudando o valor do elemento para loopar na lista toda.
+                elemento_atual = celulas[elemento_atual].prox;
             }
         }
-        else
+
+        // Executa se o acima loop chegar ao final da lista e não encontrar uma posição para o elemento a ser adicionado.
+        if (!encontrou_posicao)
         {
-            esquerda_ou_direita = 0;
+            // "elemento_atual" será o último elemento devido ao loop.
+            if (get_numCelOcupados(lista) == 1)
+            {
+                celulas[0].prox = 1;
+            }
+            else
+            {
+                // Definindo o novo index para o elemento que ERA o último.
+                celulas[celulas[lista->celulasDisp].ant].prox = (int) lista->ultimo;
+                printf("%d\n", celulas[celulas[lista->celulasDisp].ant].prox);
+            }
+
+            // Coloca indexes do final da lista já que não foram encontrados elementos menores.
+            celulas[lista->celulasDisp].ant = (int) lista->ultimo;
+            celulas[lista->celulasDisp].prox = FINAL_DA_LISTA;
         }
 
-        loop_atual++;
     }
+    imprime_celulas(lista);
+
+    lista->numCelOcupados++;
 }
 
 void remove_da_lista(Lista *lista)
@@ -142,4 +211,16 @@ void remove_da_lista(Lista *lista)
     celulas[lista->primeiro].prox = (int) lista->celulasDisp;
     celulas[lista->primeiro + 1].ant = -1;
     lista->celulasDisp = lista->primeiro;
+}
+
+void imprime_celulas(Lista *lista)
+{
+    Celula *celulas = (Celula *) lista->celulas;
+
+    for (int i = 0; i < lista->tamanho; i++)
+    {
+        printf("Celula\n"
+               "ant = %d | prox = %d\n\n",
+               celulas[i].ant, celulas[i].prox);
+    }
 }

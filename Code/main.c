@@ -5,7 +5,7 @@ int main()
 {
     // ---------------------------------------- TESTE LISTA ------------------------------------------------------------
 
-    Lista *lista = inicializa_lista(1000);
+    Lista *lista = inicializa_lista(30);
 
     for (int i = 0; i < lista->tamanho; i++)
     {
@@ -20,17 +20,11 @@ int main()
     printf("\nDisplaying contents");
     for (int i = 0; i < get_numCelOcupados(lista); i++)
     {
-        for (int j = 0; j < get_numCelOcupados(lista); j++)
-        {
-            if (((Celula *) lista->celulas)[j].prox == i)
-            {
-                printf("\n\nPosition %d | PID = %d", j, ((Celula *) lista->celulas)[j].processo->PID);
-                printf("\nPosition %d | Priority = %d", j, ((Celula *) lista->celulas)[j].processo->prioridade);
-                printf("\nPosition %d | Time = %s", j, get_hora(((Celula *) lista->celulas)[j].processo));
-                printf("Position %d | ant = %d | prox = %d", j, ((Celula *) lista->celulas)[j].ant,
-                       ((Celula *) lista->celulas)[j].prox);
-            }
-        }
+        printf("\n\nPosition %d | PID = %d", i, ((Celula *) lista->celulas)[i].processo->PID);
+        printf("\nPosition %d | Priority = %d", i, ((Celula *) lista->celulas)[i].processo->prioridade);
+        printf("\nPosition %d | Time = %s", i, get_hora(((Celula *) lista->celulas)[i].processo));
+        printf("Position %d | ant = %d | prox = %d", i, ((Celula *) lista->celulas)[i].ant,
+               ((Celula *) lista->celulas)[i].prox);
     }
 
     free(lista);
