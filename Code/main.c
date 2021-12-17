@@ -43,7 +43,8 @@ int main()
     lendo_arquivo();
     // ---------------------------------------- TESTE LISTA ------------------------------------------------------------
 
-    Lista *lista = inicializa_lista(1);
+    Lista *lista = inicializa_lista(6);
+
 
     for (int i = 0; i < lista->tamanho; i++)
     {
@@ -58,14 +59,24 @@ int main()
     printf("\n\nDisplaying contents");
     imprime_conteudo(lista);
 
-
     // TESTING REMOVAL
     printf("\n\nREMOVENDO\n");
 
-    remove_da_lista(lista);
-    remove_da_lista(lista);
-    remove_da_lista(lista);
+    for (int i = 0; i < 6; i++)
+    {
+        remove_da_lista(lista);
+        imprime_celulas(lista);
+    }
 
+    printf("\nAFTER REMOVAL");
+
+    printf("\nINSERTING ELEMENTS");
+    for (int i = 0; i < 6; i++)
+    {
+        insere_na_lista(lista);
+    }
+
+    printf("\n\nAFTER INSERTION");
     imprime_conteudo(lista);
 
     return 0;
