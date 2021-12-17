@@ -31,7 +31,14 @@ char *get_hora(Processo *processo)
 
 unsigned int get_PID(Processo *processo)
 {
-    return processo->PID;
+    if (processo)
+    {
+        return processo->PID;
+    }
+    else
+    {
+        return -1; // Processo nulo.
+    }
 }
 
 void set_PID(Processo *processo, unsigned int novo_PID)

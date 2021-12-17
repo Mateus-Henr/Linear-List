@@ -5,7 +5,7 @@ int main()
 {
     // ---------------------------------------- TESTE LISTA ------------------------------------------------------------
 
-    Lista *lista = inicializa_lista(10);
+    Lista *lista = inicializa_lista(100000);
 
     for (int i = 0; i < lista->tamanho; i++)
     {
@@ -18,16 +18,15 @@ int main()
     printf("\nFirst position index = %d | Last position index = %d", lista->primeiro, lista->ultimo);
 
     printf("\nDisplaying contents");
-    for (int i = 0; i < get_numCelOcupados(lista); i++)
-    {
-        printf("\n\nPosition %d | PID = %d", i, ((Celula *) lista->celulas)[i].processo->PID);
-        printf("\nPosition %d | Priority = %d", i, ((Celula *) lista->celulas)[i].processo->prioridade);
-        printf("\nPosition %d | Time = %s", i, get_hora(((Celula *) lista->celulas)[i].processo));
-        printf("Position %d | ant = %d | prox = %d", i, ((Celula *) lista->celulas)[i].ant,
-               ((Celula *) lista->celulas)[i].prox);
-    }
-
-    free(lista);
+    imprime_conteudo(lista);
+//    for (int i = 0; i < get_numCelOcupados(lista); i++)
+//    {
+//        printf("\n\nPosition %d | PID = %d", i, ((Celula *) lista->celulas)[i].processo->PID);
+//        printf("\nPosition %d | Priority = %d", i, ((Celula *) lista->celulas)[i].processo->prioridade);
+//        printf("\nPosition %d | Time = %s", i, get_hora(((Celula *) lista->celulas)[i].processo));
+//        printf("Position %d | ant = %d | prox = %d", i, ((Celula *) lista->celulas)[i].ant,
+//               ((Celula *) lista->celulas)[i].prox);
+//    }
     // -----------------------------------------------------------------------------------------------------------------
 
     return 0;
