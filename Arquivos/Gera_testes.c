@@ -2,11 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+
+#define CEM 100
+#define DOIS 2
+#define ZERO 0
+
+
 int main() {
     char nome[CHAR_MAX],arquivo[CHAR_MAX], insercoes[CHAR_MAX], arquivo2[CHAR_MAX],binario_c[CHAR_MAX],calculo_c[CHAR_MAX];
     int N_insercoes,i,binario,calculos;
     FILE *teste;
-    
+
     //leitra do nome do arquivo a ser criado
     srand(time(NULL));
     printf("Nome do arquivo: ");
@@ -22,16 +28,16 @@ int main() {
     fprintf(teste,"\n");
 
     //geração aleatoria donumero de operações a serem feitas
-    N_insercoes=rand() % 100;
+    N_insercoes=rand() % CEM;
     sprintf(insercoes,"%d",N_insercoes);
     fprintf(teste,insercoes);
     fprintf(teste,"\n");
     N_insercoes=atoi(insercoes);
 
     //Loop para criação das operações a serem feitas
-    for(i=0;i<N_insercoes;i++ ){
-        binario=rand() % 2;
-        calculos=rand() % 100;
+    for(i=0 ; i<N_insercoes; i++){
+        binario=rand() % DOIS;
+        calculos=rand() % CEM;
         sprintf(binario_c,"%d",binario);
         sprintf(calculo_c,"%d",calculos);
         fprintf(teste, binario_c);
@@ -41,5 +47,5 @@ int main() {
     }
 
     fclose(teste);
-    return 0;
+    return ZERO;
 }
