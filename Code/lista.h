@@ -1,18 +1,20 @@
 #include "processo.c"
 
+typedef int Cursor;
+
 typedef struct
 {
     Processo *processo;
-    int prox;
-    int ant;
+    Cursor prox;
+    Cursor ant;
 } Celula;
 
 typedef struct
 {
     unsigned int tamanho;
     struct Celula *celulas;
-    unsigned int primeiro;
-    unsigned int ultimo;
+    Cursor primeiro;
+    Cursor ultimo;
     unsigned int celulasDisp;
     unsigned int numCelOcupados;
 } Lista;

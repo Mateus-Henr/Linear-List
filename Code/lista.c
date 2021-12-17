@@ -3,8 +3,15 @@
 
 #define FINAL_DA_LISTA -1
 #define INICIO_DA_LISTA -1
-
-void imprime_celulas(Lista *lista);
+#define INVALIDO -1
+#define VALOR_INICIAL 0
+#define NENHUM_ELEMENTO 0
+#define TRUE 1
+#define FALSE 0
+#define UM 1
+#define LISTA_CHEIA "Lista cheia!\n"
+#define LISTA_VAZIA "Lista Vazia!\n"
+#define PRINT_ELEMENTO "\n\nPosicao elemento = %d\nPID = %d\nant = %d | prox = %d"
 
 Lista *inicializa_lista(unsigned int tamanho)
 {
@@ -13,15 +20,15 @@ Lista *inicializa_lista(unsigned int tamanho)
     lista->celulas = (struct Celula *) malloc(tamanho * sizeof(Celula));
 
     // Inicialização das células vazias.
-    for (int posicao = 0; posicao < tamanho; posicao++)
+    for (int posicao = VALOR_INICIAL; posicao < tamanho; posicao++)
     {
-        int posicao_anterior = posicao - 1;
-        int posicao_proximo = posicao + 1;
+        int posicao_anterior = posicao - UM;
+        int posicao_proximo = posicao + UM;
         Celula celula;
 
         celula.ant = posicao_anterior;
 
-        if (posicao == (tamanho - 1))
+        if (posicao == (tamanho - UM))
         {
             celula.prox = FINAL_DA_LISTA;
         }
@@ -34,9 +41,9 @@ Lista *inicializa_lista(unsigned int tamanho)
         ((Celula *) lista->celulas)[posicao] = celula;
     }
 
-    lista->numCelOcupados = 0;
+    lista->numCelOcupados = NENHUM_ELEMENTO;
     lista->tamanho = tamanho;
-    lista->celulasDisp = 0;
+    lista->celulasDisp = NENHUM_ELEMENTO;
 
     return lista;
 }
@@ -48,10 +55,10 @@ unsigned int get_numCelOcupados(Lista *lista)
 
 int get_celula_disponivel(Lista *lista)
 {
-    int celula_disponivel = -1;
+    int celula_disponivel = INVALIDO;
     Celula *celulas = (Celula *) lista->celulas;
 
-    for (int i = 0; i < lista->tamanho; i++)
+    for (int i = VALOR_INICIAL; i < lista->tamanho; i++)
     {
         if (celulas[i].processo == NULL)
         {
@@ -69,9 +76,9 @@ void insere_na_lista(Lista *lista)
     Celula *celulas = (Celula *) lista->celulas;
     int get_primeira_celula_disponivel = get_celula_disponivel(lista);
 
-    if (get_primeira_celula_disponivel == -1)
+    if (get_primeira_celula_disponivel == INVALIDO)
     {
-        printf("Lista cheia!");
+        printf(LISTA_CHEIA);
         return;
     }
 
@@ -82,14 +89,14 @@ void insere_na_lista(Lista *lista)
 
     // ------------------------------------------- PRIMEIRO ELEMENTO ---------------------------------------------------
     // Se for o primeiro elemento sendo adicionado na lista.
-    if (get_numCelOcupados(lista) == 0)
+    if (get_numCelOcupados(lista) == NENHUM_ELEMENTO)
     {
         celulas[lista->celulasDisp].ant = INICIO_DA_LISTA;
         celulas[lista->celulasDisp].prox = FINAL_DA_LISTA;
 
         // Como só temos um elemento apontaremos para esse único elemento.
-        lista->primeiro = lista->celulasDisp; // É 0.
-        lista->ultimo = lista->celulasDisp; // É 0.
+        lista->primeiro = (int) lista->celulasDisp; // É 0.
+        lista->ultimo = (int) lista->celulasDisp; // É 0.
     }
         // -------------------------------------------------------------------------------------------------------------
 
@@ -97,8 +104,8 @@ void insere_na_lista(Lista *lista)
         // ------------------------------------------- OUTROS ELEMENTOS ------------------------------------------------
     else
     {
-        unsigned int encontrou_posicao = 0;
-        int elemento_atual = (int) lista->primeiro;
+        unsigned int encontrou_posicao = FALSE;
+        int elemento_atual = lista->primeiro;
 
         while (elemento_atual != FINAL_DA_LISTA)
         {
@@ -106,14 +113,14 @@ void insere_na_lista(Lista *lista)
 
             if (get_PID(processo_atual) > get_PID(processo_para_adicionar))
             {
-                encontrou_posicao = 1;
+                encontrou_posicao = TRUE;
 
                 if (celulas[elemento_atual].ant == INICIO_DA_LISTA)
                 {
                     celulas[lista->primeiro].ant = (int) lista->celulasDisp;
-                    celulas[lista->celulasDisp].prox = (int) lista->primeiro;
+                    celulas[lista->celulasDisp].prox = lista->primeiro;
                     celulas[lista->celulasDisp].ant = FINAL_DA_LISTA;
-                    lista->primeiro = lista->celulasDisp;
+                    lista->primeiro = (int) lista->celulasDisp;
                 }
                 else if (celulas[elemento_atual].prox == FINAL_DA_LISTA)
                 {
@@ -152,19 +159,23 @@ void insere_na_lista(Lista *lista)
     lista->numCelOcupados++;
 }
 
-// NOT COMPLETELY DONE YET
 void remove_da_lista(Lista *lista)
 {
     Celula *celulas = (Celula *) lista->celulas;
 
-    if (lista->numCelOcupados == 0)
+    // Checando se a lista está vazia.
+    if (lista->numCelOcupados == NENHUM_ELEMENTO || lista->primeiro == FINAL_DA_LISTA)
     {
-        printf("Lista Vazia!");
+        printf(LISTA_VAZIA);
         return;
     }
 
+    // Liberando o processo na memória.
     free(celulas[lista->primeiro].processo);
+
+    // Colocando o processo como nulo para "setar" como uma célula disponível.
     celulas[lista->primeiro].processo = NULL;
+
 
     if (celulas[lista->primeiro].prox != FINAL_DA_LISTA)
     {
@@ -175,36 +186,18 @@ void remove_da_lista(Lista *lista)
     lista->numCelOcupados--;
 }
 
-// NOT COMPLETELY DONE YET
-void imprime_celulas(Lista *lista)
-{
-    Celula *celulas = (Celula *) lista->celulas;
-
-    for (int i = 0; i < lista->tamanho; i++)
-    {
-        printf("Celula %d\n"
-               "ant = %d | prox = %d\n\n",
-               i, celulas[i].ant, celulas[i].prox);
-    }
-}
-
 void imprime_conteudo(Lista *lista)
 {
     Celula *celulas = (Celula *) lista->celulas;
     int elemento_atual = (int) lista->primeiro;
 
-    while (1)
+    while (elemento_atual != FINAL_DA_LISTA)
     {
-
-        printf("\nPID %d\n"
-               "ant = %d | prox = %d\n\n",
-               celulas[elemento_atual].processo->PID, celulas[elemento_atual].ant, celulas[elemento_atual].prox);
+        printf(PRINT_ELEMENTO,
+               elemento_atual, celulas[elemento_atual].processo->PID,
+               celulas[elemento_atual].ant,
+               celulas[elemento_atual].prox);
 
         elemento_atual = celulas[elemento_atual].prox;
-
-        if (elemento_atual == FINAL_DA_LISTA)
-        {
-            break;
-        }
     }
 }
