@@ -5,7 +5,7 @@ int main()
 {
     // ---------------------------------------- TESTE LISTA ------------------------------------------------------------
 
-    Lista *lista = inicializa_lista(4);
+    Lista *lista = inicializa_lista(10);
 
     for (int i = 0; i < lista->tamanho; i++)
     {

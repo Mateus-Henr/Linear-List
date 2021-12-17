@@ -74,10 +74,17 @@ void insere_na_lista(Lista *lista)
 {
     Processo *processo_para_adicionar = inicializa_processo();
     Celula *celulas = (Celula *) lista->celulas;
+    int get_primeira_celula_disponivel = get_celula_disponivel(lista);
 
-    lista->celulasDisp = get_celula_disponivel(lista);
+    if (lista->celulasDisp == -1)
+    {
+        printf("Lista cheia!");
+        return;
+    }
+
+    // Valores iniciais para inserir um novo elemento.
+    lista->celulasDisp = get_primeira_celula_disponivel;
     celulas[lista->celulasDisp].processo = processo_para_adicionar;
-    lista->ultimo = lista->celulasDisp;
 
     // Se for o primeiro elemento sendo adicionado na lista.
     if (get_numCelOcupados(lista) == 0)
@@ -86,8 +93,8 @@ void insere_na_lista(Lista *lista)
         celulas[lista->celulasDisp].prox = FINAL_DA_LISTA;
 
         // Como só temos um elemento apontaremos para esse único elemento.
-        lista->primeiro = lista->celulasDisp;
-        lista->ultimo = lista->celulasDisp;
+        lista->primeiro = lista->celulasDisp; // É 0.
+        lista->ultimo = lista->celulasDisp; // É 0.
     }
     else // Executa a partir do segundo elemento.
     {
@@ -100,9 +107,8 @@ void insere_na_lista(Lista *lista)
         //         Dessa forma será colocado com indexes de final de lista.
         unsigned int encontrou_posicao = 0;
 
-        // Essa variável será usada para lembrar o valor da célula passada para tirar o -1 e apontar para
-        // a nova célula se a mesma vier no final.
-        int temp_ultima_celula = 0;
+        // Salvando o prox index do valor adicionado (a lista já está organizada).
+        int temp_ultimo_prox = celulas[lista->celulasDisp].ant;
 
         // Enquanto elemento atual não for o último elemento.
         while (elemento_atual != FINAL_DA_LISTA)
@@ -124,6 +130,14 @@ void insere_na_lista(Lista *lista)
                     celulas[lista->celulasDisp].ant = INICIO_DA_LISTA;
                     celulas[lista->celulasDisp].prox = celulas[elemento_atual].prox;
                 }
+                else if (celulas[elemento_atual].prox == FINAL_DA_LISTA)
+                {
+                    // I DON'T KNOW WTF IS HAPENNING HERE
+                    celulas[lista->ultimo].ant = lista->ultimo;
+                    celulas[lista->ultimo].prox = elemento_atual;
+                    celulas[lista->celulasDisp].ant = celulas[elemento_atual].ant;
+                    celulas[lista->celulasDisp].prox = temp_ultimo_prox;
+                }
                 else
                 {
                     // Definindo os indexes corretos caso o elemento entre em qualquer outro lugar da lista.
@@ -142,25 +156,59 @@ void insere_na_lista(Lista *lista)
                 while (elemento_atual != FINAL_DA_LISTA)
                 {
                     // Checkando se a próxima célula existe.
-                    if (celulas[celulas[celulas[elemento_atual].prox].prox].processo != NULL)
+                    if (celulas[elemento_atual].prox != -1)
                     {
-                        temp_ant = celulas[celulas[elemento_atual].prox].prox;
+                        if (celulas[celulas[elemento_atual].prox].prox != -1)
+                        {
+                            if (celulas[celulas[celulas[elemento_atual].prox].prox].processo != NULL)
+                            {
+                                temp_ant = celulas[celulas[elemento_atual].prox].prox;
+                            }
+                            else
+                            {
+                                temp_ant = temp_ultimo_prox;
+                            }
+                        }
+                        else
+                        {
+                            temp_ant = temp_ultimo_prox;
+                        }
                     }
                     else
                     {
-                        break;
+                        temp_ant = temp_ultimo_prox;
                     }
 
                     // Checkando se a célula depois da próxima existe para mudar o valor.
-                    if (celulas[celulas[celulas[celulas[elemento_atual].prox].prox].prox].processo != NULL)
+                    if (celulas[elemento_atual].prox != -1)
                     {
-                        temp_prox = celulas[celulas[celulas[elemento_atual].prox].prox].prox;
+                        if (celulas[celulas[elemento_atual].prox].prox != -1)
+                        {
+                            if (celulas[celulas[celulas[elemento_atual].prox].prox].prox != -1)
+                            {
+                                if (celulas[celulas[celulas[celulas[elemento_atual].prox].prox].prox].processo != NULL)
+                                {
+                                    temp_prox = celulas[celulas[celulas[elemento_atual].prox].prox].prox;
+                                }
+                                else
+                                {
+                                    temp_prox = FINAL_DA_LISTA;
+                                }
+                            }
+                            else
+                            {
+                                temp_prox = FINAL_DA_LISTA;
+                            }
+                        }
+                        else
+                        {
+                            temp_prox = FINAL_DA_LISTA;
+                        }
                     }
                     else
                     {
                         // Se a próxima célula não existir teremos o final da lista.
                         temp_prox = FINAL_DA_LISTA;
-                        break;
                     }
 
                     // Passando os valores para os próximos elementos.
@@ -168,9 +216,13 @@ void insere_na_lista(Lista *lista)
                     celulas[elemento_atual].prox = temp_prox;
 
                     // JEITO CAGADO JOAO ARRUMA
-                    if (temp_prox != -1)
+                    if (temp_prox == -1)
                     {
-                        temp_ultima_celula = temp_prox;
+                        break;
+                    }
+                    else
+                    {
+                        lista->ultimo = temp_prox;
                     }
 
                     // Mudando o valor do elemento atual de forma a ele pegar o próximo index.
@@ -178,9 +230,10 @@ void insere_na_lista(Lista *lista)
                 }
             }
 
-            if (temp_ultima_celula == 0)
+            // JEITO CAGADO JOAO ARRUMA
+            if (lista->ultimo != -1)
             {
-                temp_ultima_celula = elemento_atual;
+                lista->ultimo = elemento_atual;
             }
 
             // Condição para checkar se o valor já não é o fim da lista (devido ao loop acima).
@@ -198,20 +251,21 @@ void insere_na_lista(Lista *lista)
             if (get_numCelOcupados(lista) == 1)
             {
                 celulas[0].prox = 1;
+                lista->ultimo = 1;
             }
             else
             {
                 // Definindo o novo index para o elemento que ERA o último.
-                celulas[temp_ultima_celula].prox = (int) lista->ultimo;
+                celulas[lista->ultimo].prox = temp_ultimo_prox;
+                lista->ultimo = temp_ultimo_prox;
             }
 
             // Coloca indexes do final da lista já que não foram encontrados elementos menores.
-            celulas[lista->celulasDisp].ant = (int) lista->ultimo;
+            celulas[lista->celulasDisp].ant = (int) temp_ultimo_prox;
             celulas[lista->celulasDisp].prox = FINAL_DA_LISTA;
         }
 
     }
-    imprime_celulas(lista);
 
     lista->numCelOcupados++;
 }
@@ -236,4 +290,6 @@ void imprime_celulas(Lista *lista)
                "ant = %d | prox = %d\n\n",
                celulas[i].ant, celulas[i].prox);
     }
+
+    lista->numCelOcupados--;
 }
