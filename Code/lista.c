@@ -159,6 +159,7 @@ void insere_na_lista(Lista *lista)
     lista->numCelOcupados++;
 }
 
+// SHIT CODE FIX IT JOÃO
 void remove_da_lista(Lista *lista)
 {
     Celula *celulas = (Celula *) lista->celulas;
@@ -176,9 +177,10 @@ void remove_da_lista(Lista *lista)
     // Colocando o processo como nulo para "setar" como uma célula disponível.
     celulas[lista->primeiro].processo = NULL;
 
-
     if (celulas[lista->primeiro].prox != FINAL_DA_LISTA)
     {
+        celulas[lista->primeiro].ant = celulas[celulas[lista->primeiro].prox].ant;
+        celulas[0].ant = -1;
         celulas[celulas[lista->primeiro].prox].ant = INICIO_DA_LISTA;
         lista->primeiro = celulas[lista->primeiro].prox;
     }
@@ -199,5 +201,17 @@ void imprime_conteudo(Lista *lista)
                celulas[elemento_atual].prox);
 
         elemento_atual = celulas[elemento_atual].prox;
+    }
+}
+
+void imprime_celulas(Lista *lista)
+{
+    Celula *celulas = (Celula *) lista->celulas;
+
+    for (int i = 0; i < lista->tamanho; i++)
+    {
+        printf("Celula %d\n"
+               "ant = %d | prox = %d\n\n",
+               i, celulas[i].ant, celulas[i].prox);
     }
 }
