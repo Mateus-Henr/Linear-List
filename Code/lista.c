@@ -9,9 +9,13 @@
 #define TRUE 1
 #define FALSE 0
 #define UM 1
+#define PRIMEIRO_ELEMENTO 0
 #define LISTA_CHEIA "Lista cheia!\n"
 #define LISTA_VAZIA "Lista Vazia!\n"
-#define PRINT_ELEMENTO "\n\nPosicao elemento = %d\nPID = %d\nant = %d | prox = %d"
+#define PRINT_ELEMENTO "\n\nPosicao elemento = %d\nPID = %d\nant = %d | prox = %d\n"
+
+
+void imprime_celulas(Lista *lista);
 
 Lista *inicializa_lista(unsigned int tamanho)
 {
@@ -165,25 +169,36 @@ void remove_da_lista(Lista *lista)
     Celula *celulas = (Celula *) lista->celulas;
 
     // Checando se a lista está vazia.
-    if (lista->numCelOcupados == NENHUM_ELEMENTO || lista->primeiro == FINAL_DA_LISTA)
+    if (get_numCelOcupados(lista) == NENHUM_ELEMENTO)
     {
         printf(LISTA_VAZIA);
         return;
     }
 
-    // Liberando o processo na memória.
-    free(celulas[lista->primeiro].processo);
-
-    // Colocando o processo como nulo para "setar" como uma célula disponível.
-    celulas[lista->primeiro].processo = NULL;
-
     if (celulas[lista->primeiro].prox != FINAL_DA_LISTA)
     {
+        // Liberando o processo na memória.
+        free(celulas[lista->primeiro].processo);
+
+        // Colocando o processo como nulo para "setar" como uma célula disponível.
+        celulas[lista->primeiro].processo = NULL;
+
+
         celulas[lista->primeiro].ant = celulas[celulas[lista->primeiro].prox].ant;
-        celulas[0].ant = -1;
-        celulas[celulas[lista->primeiro].prox].ant = INICIO_DA_LISTA;
+        if (celulas[celulas[lista->primeiro].prox].prox != FINAL_DA_LISTA)
+        {
+            celulas[celulas[lista->primeiro].prox].ant = INICIO_DA_LISTA;
+        }
         lista->primeiro = celulas[lista->primeiro].prox;
     }
+    else
+    {
+        free(celulas[lista->ultimo].processo);
+        celulas[lista->ultimo].processo = NULL;
+        lista->primeiro = PRIMEIRO_ELEMENTO;
+        lista->ultimo = (int) lista->tamanho;
+    }
+
 
     lista->numCelOcupados--;
 }
@@ -211,7 +226,8 @@ void imprime_celulas(Lista *lista)
     for (int i = 0; i < lista->tamanho; i++)
     {
         printf("Celula %d\n"
+               "Processo = %s"
                "ant = %d | prox = %d\n\n",
-               i, celulas[i].ant, celulas[i].prox);
+               i, (char *) celulas[i].processo, celulas[i].ant, celulas[i].prox);
     }
 }

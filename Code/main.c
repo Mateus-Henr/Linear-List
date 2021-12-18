@@ -8,42 +8,44 @@
     Op = 0 para inserção e 1 para remoção início
 */
 
-void lendo_arquivo(){
-    int N, NLO, Op, i;
-    char nome_arq[CHAR_MAX], local_arq[CHAR_MAX], hold[CHAR_MAX], operacoes[CHAR_MAX];
-    FILE *teste;
-    Lista *lista;
+//void lendo_arquivo()
+//{
+//    int N, NLO, Op, i;
+//    char nome_arq[CHAR_MAX], local_arq[CHAR_MAX], hold[CHAR_MAX], operacoes[CHAR_MAX];
+//    FILE *teste;
+//    Lista *lista;
+//
+//    printf("Nome arquivo: ");
+//    scanf("%s", nome_arq);
+//    sprintf(local_arq, "..\\Arquivos\\%s", nome_arq);
+//    teste = fopen(local_arq, "r");
+//
+//    //Pegando numero de células do vetor
+//    *hold = fgets(1, 6, teste);
+//    N = atoi(*hold);
+//
+//    //inicializando lista com o numero do arquivo de testes
+//    lista = inicializa_lista(N);
+//
+//    //Numero de operaçoes
+//    *hold = fgets(2, 3, teste);
+//    NLO = 3 + atoi(*hold);
+//
+//    //
+//    for (i = 3; i < NLO + 3; i++)
+//    {
+//        *operacoes = fgets(i, 5, teste);
+//        *hold = strtok(operacoes, " ");
+//        Op = atoi(hold[0]);
+//        printf("%d", Op);
+//    }
+//}
 
-    printf("Nome arquivo: ");
-    scanf("%s", nome_arq);
-    sprintf(local_arq, "..\\Arquivos\\%s", nome_arq);
-    teste = fopen(local_arq,"r");
-
-    //Pegando numero de células do vetor
-    *hold = fgets(1, 6, teste);
-    N = atoi(*hold);
-
-    //inicializando lista com o numero do arquivo de testes
-    lista = inicializa_lista(N);
-
-    //Numero de operaçoes
-    *hold = fgets(2, 3, teste);
-    NLO = 3 + atoi(*hold);
-
-    //
-    for(i=3; i < NLO+3; i++){
-        *operacoes = fgets(i, 5, teste);
-        *hold = strtok(operacoes, " ");
-        Op = atoi(hold[0]);
-        printf("%d",Op);
-    }
-}
 int main()
 {
-    lendo_arquivo();
     // ---------------------------------------- TESTE LISTA ------------------------------------------------------------
 
-    Lista *lista = inicializa_lista(6);
+    Lista *lista = inicializa_lista(10);
 
 
     for (int i = 0; i < lista->tamanho; i++)
@@ -62,22 +64,21 @@ int main()
     // TESTING REMOVAL
     printf("\n\nREMOVENDO\n");
 
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < lista->tamanho; i++)
     {
         remove_da_lista(lista);
-        imprime_celulas(lista);
     }
 
-    printf("\nAFTER REMOVAL");
+    imprime_celulas(lista);
 
-    printf("\nINSERTING ELEMENTS");
-    for (int i = 0; i < 6; i++)
-    {
-        insere_na_lista(lista);
-    }
-
-    printf("\n\nAFTER INSERTION");
-    imprime_conteudo(lista);
+//    printf("\nINSERTING ELEMENTS");
+//    for (int i = 0; i < lista->tamanho; i++)
+//    {
+//        insere_na_lista(lista);
+//    }
+//
+//    printf("\n\nAFTER INSERTION");
+//    imprime_conteudo(lista);
 
     return 0;
 }
