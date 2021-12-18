@@ -25,7 +25,7 @@ Instituição: [UFV-Florestal](https://www.novoscursos.ufv.br/graduacao/caf/ccp/
 
 ## Arquivos:
 ### Pasta Codes:
-* Processo.c e Processo.h
+* TProcesso.c e TProcesso.h
 * Lista_Processos.c e Lista_Processos.h
 * Gera_testes.c e Gera_testes.h
 * main.c

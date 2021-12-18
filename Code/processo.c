@@ -3,9 +3,9 @@
 #include <time.h>
 #include <string.h>
 
-Processo *inicializa_processo()
+TProcesso *inicializa_processo()
 {
-    Processo *processo = malloc(sizeof *processo);
+    TProcesso *processo = malloc(sizeof *processo);
 
     processo->PID = rand();
     processo->prioridade = 1 + (rand() % 5);
@@ -14,7 +14,7 @@ Processo *inicializa_processo()
     return processo;
 }
 
-void inicializa_tempo(Processo *processo)
+void inicializa_tempo(TProcesso *processo)
 {
     time_t hora_cru;
     struct tm *hora_atual;
@@ -24,12 +24,12 @@ void inicializa_tempo(Processo *processo)
     processo->hora = hora_atual;
 }
 
-char *get_hora(Processo *processo)
+char *get_hora(TProcesso *processo)
 {
     return asctime(processo->hora);
 }
 
-unsigned int get_PID(Processo *processo)
+unsigned int get_PID(TProcesso *processo)
 {
     if (processo)
     {
@@ -37,21 +37,21 @@ unsigned int get_PID(Processo *processo)
     }
     else
     {
-        return -1; // Processo nulo.
+        return -1; // TProcesso nulo.
     }
 }
 
-void set_PID(Processo *processo, unsigned int novo_PID)
+void set_PID(TProcesso *processo, unsigned int novo_PID)
 {
     processo->PID = novo_PID;
 }
 
-unsigned int get_prioridade(Processo *processo)
+unsigned int get_prioridade(TProcesso *processo)
 {
     return processo->prioridade;
 }
 
-void set_prioridade(Processo *processo, unsigned int nova_prioridade)
+void set_prioridade(TProcesso *processo, unsigned int nova_prioridade)
 {
     processo->prioridade = nova_prioridade;
 }

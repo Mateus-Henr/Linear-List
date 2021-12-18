@@ -14,21 +14,18 @@
 #define LISTA_VAZIA "Lista Vazia!\n"
 #define PRINT_ELEMENTO "\n\nPosicao elemento = %d\nPID = %d\nant = %d | prox = %d\n"
 
-
-void imprime_celulas(Lista *lista);
-
-Lista *inicializa_lista(unsigned int tamanho)
+TLista *inicializa_lista(unsigned int tamanho)
 {
     // Alocando espaços para as estruturas.
-    Lista *lista = (Lista *) malloc(sizeof(Lista));
-    lista->celulas = (struct Celula *) malloc(tamanho * sizeof(Celula));
+    TLista *lista = (TLista *) malloc(sizeof(TLista));
+    lista->celulas = (struct Celula *) malloc(tamanho * sizeof(TCelula));
 
     // Inicialização das células vazias.
     for (int posicao = VALOR_INICIAL; posicao < tamanho; posicao++)
     {
         int posicao_anterior = posicao - UM;
         int posicao_proximo = posicao + UM;
-        Celula celula;
+        TCelula celula;
 
         celula.ant = posicao_anterior;
 
@@ -42,7 +39,7 @@ Lista *inicializa_lista(unsigned int tamanho)
         }
 
         celula.processo = NULL;
-        ((Celula *) lista->celulas)[posicao] = celula;
+        ((TCelula *) lista->celulas)[posicao] = celula;
     }
 
     lista->numCelOcupados = NENHUM_ELEMENTO;
@@ -52,15 +49,15 @@ Lista *inicializa_lista(unsigned int tamanho)
     return lista;
 }
 
-unsigned int get_numCelOcupados(Lista *lista)
+unsigned int get_numCelOcupados(TLista *lista)
 {
     return lista->numCelOcupados;
 }
 
-int get_celula_disponivel(Lista *lista)
+int get_celula_disponivel(TLista *lista)
 {
     int celula_disponivel = INVALIDO;
-    Celula *celulas = (Celula *) lista->celulas;
+    TCelula *celulas = (TCelula *) lista->celulas;
 
     for (int i = VALOR_INICIAL; i < lista->tamanho; i++)
     {
@@ -74,10 +71,10 @@ int get_celula_disponivel(Lista *lista)
     return celula_disponivel;
 }
 
-void insere_na_lista(Lista *lista)
+void insere_na_lista(TLista *lista)
 {
-    Processo *processo_para_adicionar = inicializa_processo();
-    Celula *celulas = (Celula *) lista->celulas;
+    TProcesso *processo_para_adicionar = inicializa_processo();
+    TCelula *celulas = (TCelula *) lista->celulas;
     int get_primeira_celula_disponivel = get_celula_disponivel(lista);
 
     if (get_primeira_celula_disponivel == INVALIDO)
@@ -113,7 +110,7 @@ void insere_na_lista(Lista *lista)
 
         while (elemento_atual != FINAL_DA_LISTA)
         {
-            Processo *processo_atual = celulas[elemento_atual].processo;
+            TProcesso *processo_atual = celulas[elemento_atual].processo;
 
             if (get_PID(processo_atual) > get_PID(processo_para_adicionar))
             {
@@ -164,9 +161,9 @@ void insere_na_lista(Lista *lista)
 }
 
 // SHIT CODE FIX IT JOÃO
-void remove_da_lista(Lista *lista)
+void remove_da_lista(TLista *lista)
 {
-    Celula *celulas = (Celula *) lista->celulas;
+    TCelula *celulas = (TCelula *) lista->celulas;
 
     // Checando se a lista está vazia.
     if (get_numCelOcupados(lista) == NENHUM_ELEMENTO)
@@ -190,6 +187,7 @@ void remove_da_lista(Lista *lista)
             celulas[celulas[lista->primeiro].prox].ant = INICIO_DA_LISTA;
         }
         lista->primeiro = celulas[lista->primeiro].prox;
+        celulas[PRIMEIRO_ELEMENTO].ant = INICIO_DA_LISTA;
     }
     else
     {
@@ -203,9 +201,15 @@ void remove_da_lista(Lista *lista)
     lista->numCelOcupados--;
 }
 
-void imprime_conteudo(Lista *lista)
+void imprime_conteudo(TLista *lista)
 {
-    Celula *celulas = (Celula *) lista->celulas;
+    if (get_numCelOcupados(lista) == 0)
+    {
+        printf(LISTA_VAZIA);
+        return;
+    }
+
+    TCelula *celulas = (TCelula *) lista->celulas;
     int elemento_atual = (int) lista->primeiro;
 
     while (elemento_atual != FINAL_DA_LISTA)
@@ -216,18 +220,5 @@ void imprime_conteudo(Lista *lista)
                celulas[elemento_atual].prox);
 
         elemento_atual = celulas[elemento_atual].prox;
-    }
-}
-
-void imprime_celulas(Lista *lista)
-{
-    Celula *celulas = (Celula *) lista->celulas;
-
-    for (int i = 0; i < lista->tamanho; i++)
-    {
-        printf("Celula %d\n"
-               "Processo = %s"
-               "ant = %d | prox = %d\n\n",
-               i, (char *) celulas[i].processo, celulas[i].ant, celulas[i].prox);
     }
 }

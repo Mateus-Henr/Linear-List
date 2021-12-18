@@ -4,10 +4,10 @@ typedef int Cursor;
 
 typedef struct
 {
-    Processo *processo;
+    TProcesso *processo;
     Cursor prox;
     Cursor ant;
-} Celula;
+} TCelula;
 
 typedef struct
 {
@@ -17,12 +17,12 @@ typedef struct
     Cursor ultimo;
     unsigned int celulasDisp;
     unsigned int numCelOcupados;
-} Lista;
+} TLista;
 
-Lista *inicializa_lista(unsigned int tamanho);
+TLista *inicializa_lista(unsigned int tamanho);
 
-unsigned int get_numCelOcupados(Lista *lista);
+unsigned int get_numCelOcupados(TLista *lista);
 
-void insere_na_lista(Lista *lista);
+void insere_na_lista(TLista *lista);
 
-void remove_da_lista(Lista *lista);
+void remove_da_lista(TLista *lista);
