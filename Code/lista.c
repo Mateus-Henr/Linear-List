@@ -203,7 +203,7 @@ void remove_da_lista(TLista *lista)
 
 void imprime_conteudo(TLista *lista)
 {
-    if (get_numCelOcupados(lista) == 0)
+    if (get_numCelOcupados(lista) == NENHUM_ELEMENTO)
     {
         printf(LISTA_VAZIA);
         return;
