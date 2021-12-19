@@ -1,5 +1,7 @@
-#include "lista.h"
+#include <stdio.h>
 #include <stdlib.h>
+
+#include "lista.h"
 
 #define FINAL_DA_LISTA -1
 #define INICIO_DA_LISTA -1

@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include "lista.c"
-#include "teste.c"
+#include "teste.h"
 
 int main(void)
 {

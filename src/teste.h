@@ -1,4 +1,4 @@
-#include "lista.c"
+#include "lista.h"
 
 /*
  * Funções abstratas relacionadas a arquivos.

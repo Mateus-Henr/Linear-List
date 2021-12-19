@@ -1,4 +1,4 @@
-#include "processo.c"
+#include "processo.h"
 
 /*
  * Estrutura abstrata para uma lista de processos ao qual simula processo de uma máquina.

@@ -1,6 +1,7 @@
-#include "processo.h"
 #include <stdlib.h>
 #include <time.h>
+
+#include "processo.h"
 
 /*
  * Essa função cria e aloca um processo na memória com PID (inteiro) e prioridade (inteiro entre 1 e 5) aleatórios,

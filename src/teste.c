@@ -1,7 +1,8 @@
-#include "teste.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#include "teste.h"
 
 #define CEM 100
 #define DOIS 2

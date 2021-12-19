@@ -10,7 +10,6 @@ typedef struct
     unsigned int PID;
     unsigned int prioridade;
     struct tm *hora;
-
 } TProcesso;
 
 // Funções de inicialização
