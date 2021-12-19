@@ -5,7 +5,10 @@
 #include "teste.h"
 
 #define CEM 100
+#define UM 1
 #define DOIS 2
+#define LIMITE_NUMERO_ARQUIVO 99
+#define VALOR_INICIAL 0
 #define NOME_ARQUIVO_USUARIO "..//..//Arquivos//%s.txt"
 #define TAMANHO_STRING_ARQUIVO 31
 #define NAO_ENCONTRADO "\nO arquivo com nome '%s' não pode ser encontrado.\n"
@@ -22,7 +25,7 @@
 void gera_arquivo(unsigned int qtd_operacoes, unsigned int num_arquivo, unsigned int tamanho_lista)
 {
     // Checando se o número informado pelo usuário é válido.
-    if (num_arquivo > 99)
+    if (num_arquivo > LIMITE_NUMERO_ARQUIVO)
     {
         printf(NUMERO_INVALIDO);
         return;
@@ -56,6 +59,10 @@ void gera_arquivo(unsigned int qtd_operacoes, unsigned int num_arquivo, unsigned
         fprintf(arquivo, "%d", rand() % DOIS);
         fprintf(arquivo, "%s", " ");
         fprintf(arquivo, "%d", rand() % CEM);
+        if (j != (qtd_operacoes - UM))
+        {
+            fprintf(arquivo, "%s", "\n");
+        }
     }
 
     fclose(arquivo);
@@ -114,7 +121,7 @@ TLista *ler_arquivo(char *nome_arquivo)
     lista = inicializa_lista(tamanho_lista);
 
     // Criando loop para realizar a quantidade de operações da opcção escolhida pelo usuário.
-    for (int i = 0; i < num_operacoes; i++)
+    for (int i = VALOR_INICIAL; i < num_operacoes; i++)
     {
         unsigned int operacao;
         unsigned int qtd_operacao;
@@ -125,7 +132,7 @@ TLista *ler_arquivo(char *nome_arquivo)
             return NULL;
         }
 
-        for (int j = 0; j < qtd_operacao; j++)
+        for (int j = VALOR_INICIAL; j < qtd_operacao; j++)
         {
             operacao ? remove_da_lista(lista) : insere_na_lista(lista);
         }

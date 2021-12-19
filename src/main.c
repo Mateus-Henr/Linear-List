@@ -44,7 +44,8 @@ int main(void)
     // ---------------------------------------------- TESTE ARQUIVO ----------------------------------------------------
 
     gera_arquivo(10, 10, 1000);
-    TLista *lista = ler_arquivo("teste5ds");
+    TLista *lista = ler_arquivo("teste1");
+
     if (lista)
     {
         imprime_conteudo(lista);
