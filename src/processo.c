@@ -3,6 +3,9 @@
 
 #include "processo.h"
 
+#define UM 1
+#define LIMITE 5
+
 /*
  * Essa função cria e aloca um processo na memória com PID (inteiro) e prioridade (inteiro entre 1 e 5) aleatórios,
  * além de conter o tempo de criação (retirado da máquina do usuário). Ao final retorna um ponteiro para o processo.
@@ -12,7 +15,7 @@ TProcesso *inicializa_processo()
     TProcesso *processo = malloc(sizeof *processo); // Alocando processo na memória.
 
     processo->PID = rand();
-    processo->prioridade = 1 + (rand() % 5);
+    processo->prioridade = UM + (rand() % LIMITE);
     inicializa_tempo(processo);
 
     return processo;
