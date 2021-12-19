@@ -195,17 +195,13 @@ void insere_na_lista(TLista *lista)
 
             // Trocando o elemento para continuar o loop até (ou não) entrar na condição (percorrendo a lista).
             elemento_atual = celulas[elemento_atual].prox;
-            if (elemento_atual != FINAL_DA_LISTA)
-            {
-                // ANALISAR MELHOR.
-                // Trocando o último cursor para se adequar ao último elemento.
-                lista->ultimo = elemento_atual;
-            }
+
         }
 
         // Essa condição será verdadeira caso o elemento for entrar na última posição da lista.
         if (!encontrou_posicao)
         {
+            celulas[lista->celulasDisp].ant=lista->ultimo;
             celulas[lista->ultimo].prox = (int) lista->celulasDisp;
             celulas[lista->celulasDisp].prox = FINAL_DA_LISTA;
             lista->ultimo = (int) lista->celulasDisp;

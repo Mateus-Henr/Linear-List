@@ -1,16 +1,18 @@
 #include "teste.h"
-
+#include <stdio.h>
 int main(void)
 {
 
     // ---------------------------------------------- TESTE LISTA ------------------------------------------------------
 
-//    TLista *lista = inicializa_lista(5);
+//    TLista *lista = inicializa_lista(25);
 //
 //
 //    for (int i = 0; i < lista->tamanho; i++)
 //    {
+//        printf(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
 //        insere_na_lista(lista);
+//        imprime_conteudo(lista);
 //    }
 //
 //    printf("\nInformation about the list");
@@ -26,17 +28,22 @@ int main(void)
 //
 //    for (int i = 0; i < lista->tamanho; i++)
 //    {
+//        printf("////////////////////////////////////");
 //        remove_da_lista(lista);
+//        imprime_conteudo(lista);
 //    }
 //
+//    printf("\n\nRINTGF\n");
 //    imprime_conteudo(lista);
 //
-//    for (int i = 0; i < lista->tamanho / 2; i++)
+//    for (int i = 0; i < lista->tamanho ; i++)
 //    {
+//        printf(".>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 //        insere_na_lista(lista);
+//        imprime_conteudo(lista);
 //    }
 
-//    imprime_conteudo(lista);
+
 
     // -----------------------------------------------------------------------------------------------------------------
 
@@ -44,7 +51,7 @@ int main(void)
     // ---------------------------------------------- TESTE ARQUIVO ----------------------------------------------------
 
     gera_arquivo(10, 10, 1000);
-    TLista *lista = ler_arquivo("teste5ds");
+    TLista *lista = ler_arquivo("teste9");
     if (lista)
     {
         imprime_conteudo(lista);
