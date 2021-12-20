@@ -1,1 +1,0 @@
-<< teste1 >> Tempo gasto em segundos: 78.91
