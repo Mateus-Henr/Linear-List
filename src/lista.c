@@ -12,7 +12,6 @@
 #define FALSE 0
 #define UM 1
 #define ELEMENTO_INICIAL 0
-#define LISTA_CHEIA "Lista cheia!\n"
 #define LISTA_VAZIA "Lista Vazia!\n"
 #define PRINT_ELEMENTO "\n\nPosicao elemento = %d\nPID = %d\nant = %d | prox = %d\n"
 
@@ -104,7 +103,7 @@ int get_celula_disponivel(TLista *lista)
  * pelo PID do processo de cada célula. Em outras palavras, os cursores das células serão usados para ordenar as mesmas
  * na lista de forma que o PID esteja em uma ordem crescente.
  */
-void insere_na_lista(TLista *lista)
+unsigned int insere_na_lista(TLista *lista)
 {
     // Tentando encontrar uma célula disponível.
     int get_primeira_celula_disponivel = get_celula_disponivel(lista);
@@ -112,8 +111,7 @@ void insere_na_lista(TLista *lista)
     // Checando se há célula disponível.
     if (get_primeira_celula_disponivel == INVALIDO)
     {
-        printf(LISTA_CHEIA);
-        return;
+        return 0;
     }
 
     // Inicializando processo para adicionar a uma célula.
@@ -201,7 +199,7 @@ void insere_na_lista(TLista *lista)
         // Essa condição será verdadeira caso o elemento for entrar na última posição da lista.
         if (!encontrou_posicao)
         {
-            celulas[lista->celulasDisp].ant=lista->ultimo;
+            celulas[lista->celulasDisp].ant = lista->ultimo;
             celulas[lista->ultimo].prox = (int) lista->celulasDisp;
             celulas[lista->celulasDisp].prox = FINAL_DA_LISTA;
             lista->ultimo = (int) lista->celulasDisp;
@@ -210,6 +208,7 @@ void insere_na_lista(TLista *lista)
 
     // Após adicionar o elemento temos que incrementar o número de células ocupadas.
     lista->numCelOcupados++;
+    return 1;
 }
 
 
@@ -219,15 +218,14 @@ void insere_na_lista(TLista *lista)
  * elemento anteriormente ocupava será definida como nula e essa célula passará a ser uma "célula disponível" a qual
  * irá apontar para uma próxima "célula disponível".
  */
-void remove_da_lista(TLista *lista)
+unsigned int remove_da_lista(TLista *lista)
 {
     TCelula *celulas = (TCelula *) lista->celulas;
 
     // Checando se a lista está vazia.
     if (get_numCelOcupados(lista) == NENHUM_ELEMENTO)
     {
-        printf(LISTA_VAZIA);
-        return;
+        return 0;
     }
 
     // Checando se a célula atual não é a última.
@@ -267,6 +265,8 @@ void remove_da_lista(TLista *lista)
 
     // Após remover o elemento temos que decrementar o número de células ocupadas.
     lista->numCelOcupados--;
+
+    return 1;
 }
 
 

@@ -37,9 +37,9 @@ TLista *inicializa_lista(unsigned int tamanho);
 
 // Operações
 
-void insere_na_lista(TLista *lista);
+unsigned int insere_na_lista(TLista *lista);
 
-void remove_da_lista(TLista *lista);
+unsigned int remove_da_lista(TLista *lista);
 
 void imprime_conteudo(TLista *lista);
 

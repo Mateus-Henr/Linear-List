@@ -10,6 +10,7 @@
 #define LIMITE_NUMERO_ARQUIVO 99
 #define VALOR_INICIAL 0
 #define NOME_ARQUIVO_USUARIO "..//..//Arquivos//%s.txt"
+#define NOME_ARQUIVO_USUARIO_SAIDA "..//..//Arquivos//%s-saida.txt"
 #define TAMANHO_STRING_ARQUIVO 31
 #define NAO_ENCONTRADO "\nO arquivo com nome '%s' não pode ser encontrado.\n"
 #define ERRO_FORMATO "\nErro de formato. Tenha certeza que o arquivo segue o formato especificado.\n"
@@ -68,16 +69,19 @@ void gera_arquivo(unsigned int qtd_operacoes, unsigned int num_arquivo, unsigned
     fclose(arquivo);
 }
 
-
-/*
- * Esse método é usado para descrever as opções que o usuário pode escolher, por meio do console.
- */
-void mostrar_opcoes()
+void arquivo_output(char *nome_arquivo, double tempo_gasto)
 {
-    printf("\n1 - Arquivo\n");
-    printf("2 - Digitar valores para teste\n");
-}
+    FILE *arquivo;
+    char caminho_arquivo[CHAR_MAX];
 
+    sprintf(caminho_arquivo, NOME_ARQUIVO_USUARIO_SAIDA, nome_arquivo);
+    arquivo = fopen(caminho_arquivo, "w");
+
+    fprintf(arquivo, "<< %s >>", nome_arquivo);
+    fprintf(arquivo, " Tempo gasto em segundos: %0.2lf", tempo_gasto);
+
+    fclose(arquivo);
+}
 
 /*
  * O método seguinte foi criado com o intuito de ler data de um arquivo em que o nome será passado pelo usuário.
