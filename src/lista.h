@@ -13,7 +13,7 @@
 
 typedef int Cursor;
 
-typedef struct
+typedef struct Celula
 {
     TProcesso *processo;
     Cursor prox;
@@ -23,7 +23,7 @@ typedef struct
 typedef struct
 {
     unsigned int tamanho;
-    struct Celula *celulas;
+    struct TCelula *celulas;
     Cursor primeiro;
     Cursor ultimo;
     unsigned int celulasDisp;
@@ -32,7 +32,7 @@ typedef struct
 
 // Função de inicialização
 
-TLista *inicializa_lista(unsigned int tamanho);
+void inicializa_lista(TLista *lista, unsigned int tamanho);
 
 
 // Operações

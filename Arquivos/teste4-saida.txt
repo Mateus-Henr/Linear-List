@@ -1,1 +1,1 @@
-<< teste4 >> Tempo gasto em segundos: 0.23
+<< teste4 >> Tempo gasto em segundos: 0.01

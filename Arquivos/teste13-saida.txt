@@ -1,1 +1,1 @@
-<< teste13 >> Tempo gasto em segundos: 7.28
+<< teste13 >> Tempo gasto em segundos: 24.26

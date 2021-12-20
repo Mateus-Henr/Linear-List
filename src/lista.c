@@ -16,20 +16,16 @@
 #define PRINT_ELEMENTO "\n\nPosicao elemento = %d\nPID = %d\nant = %d | prox = %d\n"
 
 /*
- * Essa função é usada para inicializar uma lista. Primeiramente ocorre alocações na memória da estrutura "TLista" e do
- * array contido nessa estrutura. Após as alocações são inicializadas "Celulas" com cursores predefinidos aos quais
+ * Essa função é usada para inicializar uma lista. Primeiramente ocorre alocações na memória do array contido nessa
+ * estrutura. Após a alocação são inicializadas "Celulas" com cursores predefinidos aos quais
  * apontam para uma próxima célula e uma célula anterior, esses cursores serão posições no array.
  * Então essas "Celulas" são colocadas no array.
  * Há também a inicialização de valores iniciais para as variáveis da estrutura "TLista".
- * Retorna o ponteiro da lista criada.
  */
-TLista *inicializa_lista(unsigned int tamanho)
+void inicializa_lista(TLista *lista, unsigned int tamanho)
 {
-    // Alocando espaço na memória para a estrutura lista.
-    TLista *lista = (TLista *) malloc(sizeof(TLista));
-
     // Alocando espaço na memória para o array que compõe a estrutura lista (tamanho informado pelo usuário).
-    lista->celulas = (struct Celula *) malloc(tamanho * sizeof(TCelula));
+    lista->celulas = (struct TCelula *) malloc(tamanho * sizeof(TCelula));
 
     // Inicialização das células vazias definindo os cursores iniciais para cada uma delas.
     // Um cursor apontará para a próxima célula e o outro apontará para a célula anterior.
@@ -59,8 +55,6 @@ TLista *inicializa_lista(unsigned int tamanho)
     lista->numCelOcupados = NENHUM_ELEMENTO;
     lista->tamanho = tamanho;
     lista->celulasDisp = NENHUM_ELEMENTO;
-
-    return lista;
 }
 
 

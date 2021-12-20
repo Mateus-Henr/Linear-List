@@ -4,6 +4,6 @@ project(Tp1 C)
 set(CMAKE_C_STANDARD 99)
 add_executable(Main
         main.c
-        teste.c
+        arquivo.c
         lista.c
         processo.c)

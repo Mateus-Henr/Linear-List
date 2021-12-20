@@ -5,7 +5,7 @@
  * a biblioteca "time.h" está sendo utilizada).
  */
 
-typedef struct
+typedef struct Processo
 {
     unsigned int PID;
     unsigned int prioridade;

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "teste.h"
+#include "arquivo.h"
 
 #define CEM 100
 #define UM 1
@@ -69,6 +69,10 @@ void gera_arquivo(unsigned int qtd_operacoes, unsigned int num_arquivo, unsigned
     fclose(arquivo);
 }
 
+/*
+ * Essa função é utilizada para gerar um arquivo externo no formato "nome_do_arquivo-saida.txt" com os dados:
+ * nome do arquivo e o tempo gasto.
+ */
 void arquivo_output(char *nome_arquivo, double tempo_gasto)
 {
     FILE *arquivo;
@@ -87,14 +91,14 @@ void arquivo_output(char *nome_arquivo, double tempo_gasto)
  * O método seguinte foi criado com o intuito de ler data de um arquivo em que o nome será passado pelo usuário.
  * Esse método lerá um arquivo seguindo um formato estrito. O mesmo irá criar uma lista onde irá realizar operações
  * sobre. Tem como retorno o ponteiro da lista onde foram realizadas as operações especificadas no arquivo.
+ * Retorna um unsigned int para in informar se o metódo foi executado com sucesso.
 */
-TLista *ler_arquivo(char *nome_arquivo)
+unsigned int ler_arquivo(TLista *lista, char *nome_arquivo)
 {
     unsigned int num_operacoes;
     unsigned int tamanho_lista;
     char path_arquivo[CHAR_MAX];
     FILE *arquivo;
-    TLista *lista;
 
     // Criando caminho para o arquivo. É importante lembrar que devido o uso de uma constante para ler o arquivo
     // informado pelo usuário o mesmo deve estar dentro da pasta "Arquivos" deste projeto.
@@ -105,26 +109,26 @@ TLista *ler_arquivo(char *nome_arquivo)
     if (!arquivo)
     {
         printf(NAO_ENCONTRADO, nome_arquivo);
-        return NULL;
+        return 0;
     }
 
     // Lendo o tamanho da lista (1° dado). Lidando com valores inválidos.
     if (!fscanf(arquivo, "%i", &tamanho_lista))
     {
         printf(ERRO_FORMATO);
-        return NULL;
+        return 0;
     }
 
     // Lendo o número de operações (inserções e/ou remoções). Lidando com valores inválidos.
     if (!fscanf(arquivo, "%i", &num_operacoes))
     {
         printf(ERRO_FORMATO);
-        return NULL;
+        return 0;
     }
 
-    lista = inicializa_lista(tamanho_lista);
+    inicializa_lista(lista, tamanho_lista);
 
-    // Criando loop para realizar a quantidade de operações da opcção escolhida pelo usuário.
+    // Criando loop para realizar a quantidade de operações da opção escolhida pelo usuário.
     for (int i = VALOR_INICIAL; i < num_operacoes; i++)
     {
         unsigned int operacao;
@@ -133,7 +137,7 @@ TLista *ler_arquivo(char *nome_arquivo)
         if (!fscanf(arquivo, "%i %i", &operacao, &qtd_operacao))
         {
             printf(ERRO_FORMATO);
-            return NULL;
+            return 0;
         }
 
         for (int j = VALOR_INICIAL; j < qtd_operacao; j++)
@@ -144,5 +148,5 @@ TLista *ler_arquivo(char *nome_arquivo)
 
     fclose(arquivo);
 
-    return lista;
+    return 1;
 }

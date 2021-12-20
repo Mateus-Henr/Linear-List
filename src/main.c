@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-#include "teste.h"
+
+#include "arquivo.h"
 
 #define UM 1
 #define ZERO 0
@@ -14,10 +15,11 @@
 #define SEGUNDA_OPCAO 2
 #define MOSTRAR_OPCOES 3
 #define VALOR_INVALIDO "\nValor Invalido\n"
-#define NOME_ARQUIVO_INVALIDO "\nArquivo com nome '%s' nao encontrado.\n"
 #define OPCAO_INVALIDA "\nOpcao Invalida\n"
 #define LISTA_CHEIA "\nLista cheia!\n"
 #define LISTA_VAZIA "\nLista Vazia!\n"
+
+// Mencionando funções
 
 void mostrar_opcoes();
 
@@ -27,51 +29,56 @@ double finaliza_relogio(clock_t tempo_inicial);
 
 void limpar_stdin();
 
+/*
+ * Método principal que gera uma aplicação interativa com o usuário de forma a mostrar o usuário as opções e lidar
+ * com valores inválidos que o usuário pode entrar.
+ */
 int main(void)
 {
     int loop = TRUE;
     int imprime_lista = TRUE;
+
+    // Usando loop para lidar com input inválidos e repetições.
     while (loop)
     {
         int escolha = INVALIDO;
+
         printf("\n\nSimulador de sistema de gerenciamento de processos");
         printf("\nDigite a opcao:");
-        mostrar_opcoes();
-        if (!scanf("%d", &escolha))
+        mostrar_opcoes(); // Mostrando opções.
+        if (!scanf("%d", &escolha)) // Recebendo escolha do usuário e lidando com valores inválidos.
         {
             printf(OPCAO_INVALIDA);
             limpar_stdin();
-            break;
+            continue;
         }
 
+        // Usando switch conforme a opção que o usuário escolheu.
         switch (escolha)
         {
-            case EXIT:
+            case EXIT: // Opção 0 (sair)
                 printf("\nBye :(\n");
                 loop = FALSO;
                 break;
-            case PRIMEIRA_OPCAO:
+            case PRIMEIRA_OPCAO: // Opção 1 (Arquivo).
                 printf("\nInformacoes de arquivo");
                 printf("\n[1] Criar\n[2] Ler Arquivo\n");
                 if (!scanf("%d", &escolha))
                 {
                     printf(OPCAO_INVALIDA);
                     limpar_stdin();
-                    system("cls");
                     break;
                 }
+
+                // Opcão para criar arquivo.
                 if (escolha == PRIMEIRA_OPCAO)
                 {
-                    int qtd_operacoes, num_arquivo, tamanho_lista;
+                    // Definido variáveis.
+                    int qtd_operacoes = INVALIDO;
+                    int num_arquivo;
+                    int tamanho_lista;
 
-                    printf("\nDigite a quantidade de operacao:\n");
-                    if (!scanf("%d", &qtd_operacoes) || qtd_operacoes < 0)
-                    {
-                        printf(OPCAO_INVALIDA);
-                        limpar_stdin();
-                        break;
-                    }
-
+                    // --------------- Recebendo valores e checando se os mesmos são inválidos -------------------------
                     printf("\nDigite o numero do arquivo que deseja criar:\n");
                     if (!scanf("%d", &num_arquivo) || qtd_operacoes < 0)
                     {
@@ -88,32 +95,56 @@ int main(void)
                         break;
                     }
 
+                    printf("\nDigite a quantidade de operacoes:\n");
+                    if (!scanf("%d", &qtd_operacoes) || qtd_operacoes < 0)
+                    {
+                        printf(OPCAO_INVALIDA);
+                        limpar_stdin();
+                        break;
+                    }
+                    // -------------------------------------------------------------------------------------------------
+
+                    // --------------------------------- Gerando arquivo -----------------------------------------------
                     gera_arquivo(qtd_operacoes, num_arquivo, tamanho_lista);
-                    printf("\nArquivo gerado!\n");
+                    printf("\nArquivo com nome 'teste%02d.txt' gerado!\n", num_arquivo);
+                    // -------------------------------------------------------------------------------------------------
                 }
                 else if (escolha == SEGUNDA_OPCAO)
                 {
+                    // Definido variáveis.
                     char nome_arquivo[CHAR_MAX];
-                    printf("\nDigite o nome do arquivo:\n");
+                    unsigned int sucesso;
+
+                    // ------------------------------ Lendo arquivo ----------------------------------------------------
+                    printf("\nDigite o nome do arquivo (sem a extensao):\n");
                     scanf("%s", nome_arquivo);
 
+                    // Inicializando clock.
                     clock_t tempo_inicial = inicializa_relogio();
-                    TLista *lista = ler_arquivo(nome_arquivo);
 
-                    // Checando se arquivo foi encontrado.
-                    if (!lista)
+                    // Inicializando lista que será usada para receber informações do arquivo.
+                    TLista lista;
+
+                    // Lendo o arquivo e atribuindo a uma variável para checar se o método foi bem sucedido.
+                    sucesso = ler_arquivo(&lista, nome_arquivo);
+
+                    // Checando se ouve algum problem durante a leitura do arquivo.
+                    if (!sucesso)
                     {
-                        printf(NOME_ARQUIVO_INVALIDO, nome_arquivo);
                         limpar_stdin();
                         break;
                     }
 
+                    // Parando clock e calculando o tempo gasto.
                     double tempo_gasto = finaliza_relogio(tempo_inicial);
+                    // -------------------------------------------------------------------------------------------------
 
+                    // ---------------- Mostraando Informações sobre a lista gerada pelo arquivo -----------------------
                     printf("\nTempo em segundos: %0.2lf\n ", tempo_gasto);
-                    arquivo_output(nome_arquivo, tempo_gasto);
+                    arquivo_output(nome_arquivo, tempo_gasto); // Gerando arquivo de saída.
 
-                    printf("\nDeseja imprimir o conteudo da lista? [1] Sim [0] Nao\n");
+                    // Perguntando o usuário se ele deseja ver o conteúdo da lista.
+                    printf("\nDeseja imprimir o conteudo da lista?\n[1] Sim [0] Nao\n");
                     if (!scanf("%d", &imprime_lista))
                     {
                         printf(VALOR_INVALIDO);
@@ -121,29 +152,33 @@ int main(void)
                         break;
                     }
 
-                    if (imprime_lista)
+                    // Opção para o usuário decidir se ele deseja printar a lista.
+                    if (imprime_lista == UM)
                     {
-                        imprime_conteudo(lista);
+                        imprime_conteudo(&lista);
                     }
-                    else if (imprime_lista != FALSO)
+                    else if (imprime_lista != FALSO) // Checando o valor é inválido.
                     {
                         printf(VALOR_INVALIDO);
                         limpar_stdin();
                         break;
                     }
+                    // -------------------------------------------------------------------------------------------------
                 }
-                else
+                else // Caso a opção for inválida.
                 {
                     printf(OPCAO_INVALIDA);
                     limpar_stdin();
                     break;
                 }
                 break;
-            case SEGUNDA_OPCAO:
+            case SEGUNDA_OPCAO: // Opção 2 (valores vindos do usuário)
+                // --------------------- Recebendo valores do usuário e aplicando eles na lista ------------------------
                 printf("\nInsercao de valores pelo usuario\n");
                 int tamanho_lista;
-                printf("\nDigite o tamanho da lista: \n");
 
+                // Recebendo tamanho da lista e lidando com valores inválidos.
+                printf("\nDigite o tamanho da lista: \n");
                 if (!scanf("%d", &tamanho_lista) || tamanho_lista < 0)
                 {
                     printf(VALOR_INVALIDO);
@@ -151,15 +186,21 @@ int main(void)
                     break;
                 }
 
-                TLista *lista = inicializa_lista(tamanho_lista);
+                // Inicializando lista.
+                TLista lista;
+                inicializa_lista(&lista, tamanho_lista);
 
+                // Variável "flag" para o loop.
                 int continuar = TRUE;
 
+                // Loop para receber múltiplos valores de remoção ou inserção.
                 while (continuar)
                 {
-                    int insere_ou_remove, qtd_operacoes;
-                    printf("\n[0] Insercoes  [1] Remocoes:\n ");
+                    int insere_ou_remove;
+                    int qtd_operacoes;
 
+                    // Recebendo a escolha do usuário (remoção ou inserção) e lidando com valores inválios.
+                    printf("\n[0] Insercoes  [1] Remocoes:\n ");
                     if (!scanf("%d", &insere_ou_remove))
                     {
                         printf(VALOR_INVALIDO);
@@ -167,9 +208,10 @@ int main(void)
                         continue;
                     }
 
+                    // Opção se o usuário escolher inserção.
                     if (insere_ou_remove == ZERO)
                     {
-                        printf("\nQuantidade de inserções:\n ");
+                        printf("\nQuantidade de insercoes:\n ");
                         if (!scanf("%d", &qtd_operacoes) || qtd_operacoes < 0)
                         {
                             printf(VALOR_INVALIDO);
@@ -179,22 +221,26 @@ int main(void)
 
                         clock_t tempo_inicial = inicializa_relogio();
 
+                        // Usado para detectar se a lista estiver cheia após a realização da operação.
                         unsigned int resultado;
+                        unsigned int qtd_insercoes = 0;
 
                         for (int i = VALOR_INICIAL; i < qtd_operacoes; i++)
                         {
-                            resultado = insere_na_lista(lista);
+                            resultado = insere_na_lista(&lista);
+                            qtd_insercoes += resultado;
                         }
 
+                        // Checando se a lista está cheia baseado no valor da última operação.
                         if (!resultado)
                         {
                             printf(LISTA_CHEIA);
                         }
 
-                        printf("\n%d insercoes concluidas com sucesso.\n", resultado);
+                        printf("\n%d insercoes concluidas com sucesso.\n", qtd_insercoes);
                         printf("\nTempo em segundos: %0.2lf\n ", finaliza_relogio(tempo_inicial));
 
-                        printf("\nDeseja imprimir o conteudo da lista? [1] Sim [0] Nao\n");
+                        printf("\nDeseja imprimir o conteudo da lista?\n[1] Sim [0] Nao\n");
                         if (!scanf("%d", &imprime_lista))
                         {
                             printf(VALOR_INVALIDO);
@@ -202,21 +248,21 @@ int main(void)
                             continue;
                         }
 
-                        if (imprime_lista)
+                        if (imprime_lista == UM)
                         {
-                            imprime_conteudo(lista);
+                            imprime_conteudo(&lista);
                         }
-                        else if (imprime_lista != FALSO)
+                        else if (imprime_lista != FALSO) // Checando o valor é inválido.
                         {
                             printf(VALOR_INVALIDO);
                             limpar_stdin();
                             continue;
                         }
                     }
-                    else if (insere_ou_remove == UM)
+                    else if (insere_ou_remove == UM) // Opção se o usuário escolher remoção.
                     {
                         printf("\nQuantidade de remocoes:\n ");
-                        if (!scanf("%i", &qtd_operacoes) || qtd_operacoes < 0)
+                        if (!scanf("%d", &qtd_operacoes) || qtd_operacoes < 0)
                         {
                             printf(VALOR_INVALIDO);
                             limpar_stdin();
@@ -225,36 +271,43 @@ int main(void)
 
                         clock_t tempo_inicial = inicializa_relogio();
 
+                        // Usado para detectar se a lista estiver vazia após a realização da operação.
                         unsigned int resultado;
+                        unsigned int qtd_remocoes = 0;
+
                         for (int i = VALOR_INICIAL; i < qtd_operacoes; i++)
                         {
-                            resultado = remove_da_lista(lista);
+                            resultado = remove_da_lista(&lista);
+                            qtd_remocoes += resultado;
                         }
 
+                        // Checando se a lista está vazia baseado no valor da última operação.
                         if (!resultado)
                         {
                             printf(LISTA_VAZIA);
                         }
 
-                        printf("\n%d Remocoes concluidas com sucesso.\n", resultado);
+                        printf("\n%d remocoes concluidas com sucesso.\n", qtd_remocoes);
                         printf("\nTempo em segundos: %0.2lf\n ", finaliza_relogio(tempo_inicial));
 
-                        printf("\nDeseja imprimir o conteudo da lista? [1] Sim [0] Nao\n");
-                        if (!scanf("%d", &imprime_lista))
+                        // Perguntando se o usuário deseja imprimir conteúdo da lista.
+                        printf("\nDeseja imprimir o conteudo da lista?\n[1] Sim [0] Nao\n");
+                        if (!scanf("%d", &imprime_lista)) // Checando se o valor é inválido.
                         {
                             printf(VALOR_INVALIDO);
                             limpar_stdin();
                             continue;
                         }
 
-                        if (imprime_lista)
+                        if (imprime_lista == UM)
                         {
-                            imprime_conteudo(lista);
+                            imprime_conteudo(&lista);
                         }
-                        else if (imprime_lista != FALSO)
+                        else if (imprime_lista != FALSO) // Checando o valor é inválido.
                         {
                             printf(VALOR_INVALIDO);
                             limpar_stdin();
+                            continue;
                         }
                     }
                     else
@@ -264,31 +317,32 @@ int main(void)
                         continue;
                     }
 
+                    // Recebendo escolha do usuário para decidir se ele quer realizar mais operações.
                     printf("\nAdicionar mais insersoes ou remocoes?\n");
                     printf("\n[1] Sim [0] Nao\n");
-                    if (!scanf("%i", &continuar))
+                    if (!scanf("%d", &continuar)) // Checando se o valor digitado é valido.
                     {
                         printf(OPCAO_INVALIDA);
                         limpar_stdin();
                     }
 
-                    if (!continuar)
+                    if (!continuar) // Parar o loop.
                     {
-                        printf("Parando...");
                         continuar = FALSO;
                     }
-                    else if (continuar != UM)
+                    else if (continuar != UM) // Continuar o loop.
                     {
                         printf(OPCAO_INVALIDA);
                         continuar = TRUE;
                         limpar_stdin();
                     }
                 }
+                // -----------------------------------------------------------------------------------------------------
                 break;
-            case MOSTRAR_OPCOES:
+            case MOSTRAR_OPCOES: // Opção 3 (mostrar opções).
                 mostrar_opcoes();
                 break;
-            default:
+            default: // Valor inválido do usuário.
                 printf(OPCAO_INVALIDA);
                 limpar_stdin();
                 break;
@@ -304,11 +358,16 @@ int main(void)
  */
 void mostrar_opcoes()
 {
-    printf("\n0 - Sair\n");
-    printf("1 - Arquivo\n");
-    printf("2 - Digitar valores para teste\n");
+    printf("\n0 - Sair\n"
+           "1 - Arquivo\n"
+           "2 - Digitar valores para teste\n"
+           "3 - Mostrar opcoes\n");
 }
 
+
+/*
+ * Função usada para limpar o "stdin" para evitar problemas com "scanf()" dentro de loops.
+ */
 void limpar_stdin(void)
 {
     int c = getchar();
@@ -319,6 +378,10 @@ void limpar_stdin(void)
     }
 }
 
+
+/*
+ * Função usada para iniciar o clock.
+ */
 clock_t inicializa_relogio(void)
 {
     clock_t tempo_inicial = clock();
@@ -326,6 +389,10 @@ clock_t inicializa_relogio(void)
     return tempo_inicial;
 }
 
+
+/*
+ * Função usada para finalizar o clock e calcular o tempo total.
+ */
 double finaliza_relogio(clock_t tempo_inicial)
 {
     clock_t tempo_final = clock();

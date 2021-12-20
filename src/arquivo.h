@@ -8,4 +8,4 @@ void gera_arquivo(unsigned int qtd_operacoes, unsigned int num_arquivo, unsigned
 
 void arquivo_output(char *nome_arquivo, double tempo_gasto);
 
-TLista *ler_arquivo(char *nome_arquivo);
+unsigned int ler_arquivo(TLista *lista, char *nome_arquivo);
