@@ -80,7 +80,7 @@ int main(void)
 
                     // --------------- Recebendo valores e checando se os mesmos são inválidos -------------------------
                     printf("\nDigite o numero do arquivo que deseja criar:\n");
-                    if (!scanf("%d", &num_arquivo) || qtd_operacoes < 0)
+                    if (!scanf("%d", &num_arquivo) || num_arquivo < 0)
                     {
                         printf(OPCAO_INVALIDA);
                         limpar_stdin();
@@ -139,7 +139,7 @@ int main(void)
                     double tempo_gasto = finaliza_relogio(tempo_inicial);
                     // -------------------------------------------------------------------------------------------------
 
-                    // ---------------- Mostraando Informações sobre a lista gerada pelo arquivo -----------------------
+                    // ---------------- Mostrando Informações sobre a lista gerada pelo arquivo -----------------------
                     printf("\nTempo em segundos: %0.2lf\n ", tempo_gasto);
                     arquivo_output(nome_arquivo, tempo_gasto); // Gerando arquivo de saída.
 
