@@ -163,6 +163,7 @@ int main(void)
                         limpar_stdin();
                         break;
                     }
+                    destroi_lista(&lista);
                     // -------------------------------------------------------------------------------------------------
                 }
                 else // Caso a opção for inválida.
@@ -337,6 +338,7 @@ int main(void)
                         limpar_stdin();
                     }
                 }
+                destroi_lista(&lista);
                 // -----------------------------------------------------------------------------------------------------
                 break;
             case MOSTRAR_OPCOES: // Opção 3 (mostrar opções).

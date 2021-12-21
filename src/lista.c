@@ -292,3 +292,22 @@ void imprime_conteudo(TLista *lista)
         elemento_atual = celulas[elemento_atual].prox; // Trocando para o próximo elemento.
     }
 }
+
+
+/*
+ * Função usada para destruir a lista.
+ */
+void destroi_lista(TLista *lista)
+{
+    TCelula *celulas = (TCelula *) lista->celulas;
+
+    for (int i = VALOR_INICIAL; i < lista->tamanho; i++)
+    {
+        if (celulas[i].processo != NULL)
+        {
+            free(celulas[i].processo);
+        }
+    }
+
+    free(lista->celulas);
+}
