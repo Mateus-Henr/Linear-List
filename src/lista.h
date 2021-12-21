@@ -34,6 +34,8 @@ typedef struct
 
 void inicializa_lista(TLista *lista, unsigned int tamanho);
 
+void destroi_lista(TLista *lista);
+
 
 // Operações
 
