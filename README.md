@@ -7,7 +7,7 @@ Nome: João Victor Graciano Belfort de Andrade
 
 Usuário_GitHub: [BelfortJoao](https://github.com/BelfortJoao)
 
-Instituição: Instituição: [UFV-Florestal](https://www.novoscursos.ufv.br/graduacao/caf/ccp/www/)
+Instituição: [UFV-Florestal](https://www.novoscursos.ufv.br/graduacao/caf/ccp/www/)
 
 ## Vitor Ribeiro
 Nome: Vitor Ribeiro Lacerda
