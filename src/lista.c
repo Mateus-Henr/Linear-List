@@ -57,7 +57,10 @@ void inicializa_lista(TLista *lista, unsigned int tamanho)
 
 
 /*
- * Função utilizada para obter on número atual de células sendo ocupadas na lista.
+ * Retorna número atual de células sendo ocupadas na lista.
+ *
+ * @param    lista    ponteiro para a estrutura Lista.
+ * @return            número de células ocupadas.
  */
 int get_numCelOcupados(TLista *lista)
 {
@@ -132,8 +135,6 @@ bool insere_na_lista(TLista *lista)
     }
 
     lista->celulasDisp = proxCelulaDisp;
-
-    // Após adicionar o elemento temos que incrementar o número de células ocupadas.
     lista->numCelOcupados++;
 
     return true;
@@ -141,9 +142,10 @@ bool insere_na_lista(TLista *lista)
 
 
 /*
- * Essa função é usada para remover um elemento na primeira posição da lista. Ao remover um elemento a célula que o
- * elemento anteriormente ocupava será definida como nula e essa célula passará a ser uma "célula disponível" a qual
- * irá apontar para uma próxima "célula disponível".
+ * Remove o elemento na primeira posição da lista.
+ *
+ * @param    lista    ponteiro para a estrutura Lista.
+ * @return            sucesso na operação.
  */
 bool remove_da_lista(TLista *lista)
 {
@@ -157,23 +159,19 @@ bool remove_da_lista(TLista *lista)
 
     // Liberando o processo na memória.
     free(celulas[lista->primeiro].processo);
-
-    // Colocando o processo como nulo para "setar" como uma célula disponível.
     celulas[lista->primeiro].processo = NULL;
 
     // Checando se a célula atual não é a última.
     if (celulas[lista->primeiro].prox != FINAL_DA_LISTA)
     {
         int tempPrimeiroProx = celulas[lista->primeiro].prox;
+
+        // Tornando o próximo elemento início da lista.
+        celulas[celulas[lista->primeiro].prox].ant = INICIO_DA_LISTA;
+
         // Apontando para a próxima célula disponível.
         celulas[lista->primeiro].prox = lista->celulasDisp;
         celulas[lista->primeiro].ant = INICIO_DA_LISTA;
-
-        // Trocando index da célula que vem após a que deletamos para "-1" para identifica-lá como o início da lista.
-        if (celulas[celulas[lista->primeiro].prox].prox != FINAL_DA_LISTA)
-        {
-            celulas[celulas[lista->primeiro].prox].ant = INICIO_DA_LISTA;
-        }
 
         lista->celulasDisp = lista->primeiro;
         lista->primeiro = tempPrimeiroProx; // Alterando cursor.
@@ -182,10 +180,8 @@ bool remove_da_lista(TLista *lista)
     {
         celulas[lista->primeiro].prox = lista->celulasDisp;
         celulas[lista->primeiro].ant = INICIO_DA_LISTA;
-
-        // Alterando os cursores.
-        lista->primeiro = ELEMENTO_INICIAL;
-        lista->ultimo = ELEMENTO_INICIAL;
+        lista->celulasDisp = lista->primeiro;
+        lista->ultimo = lista->primeiro;
     }
 
     // Após remover o elemento temos que decrementar o número de células ocupadas.
@@ -196,13 +192,13 @@ bool remove_da_lista(TLista *lista)
 
 
 /*
- * Essa função é usada para mostrar informações de cada célula sendo usada na lista percorrendo células, conforme os
- * indexes das mesmas. Devido à ordenação sendo feita quando inserindo um elemento as células mostradas aqui estarão
- * em ordem crescente de PID do processo.
+ * Imprime a lista.
+ *
+ * @param    lista    ponteiro para a estrutura Lista.
  */
 void imprime_conteudo(TLista *lista)
 {
-    // Caso não haja nenhum elemento na lista a função retorna ela mesma.
+    // Caso não haja nenhum elemento.
     if (get_numCelOcupados(lista) == NENHUM_ELEMENTO)
     {
         printf(LISTA_VAZIA);
@@ -210,7 +206,7 @@ void imprime_conteudo(TLista *lista)
     }
 
     TCelula *celulas = (TCelula *) lista->celulas;
-    int elemento_atual = lista->primeiro; // Usando o primeiro elemento para percorrer os demais elementos do array.
+    int elemento_atual = lista->primeiro;
 
     // Usando loop até chegar ao final da lista.
     while (elemento_atual != FINAL_DA_LISTA)
@@ -220,13 +216,15 @@ void imprime_conteudo(TLista *lista)
                celulas[elemento_atual].ant,
                celulas[elemento_atual].prox);
 
-        elemento_atual = celulas[elemento_atual].prox; // Trocando para o próximo elemento.
+        elemento_atual = celulas[elemento_atual].prox;
     }
 }
 
 
 /*
- * Função usada para destruir a lista.
+ * Limpa a lista na memória.
+ *
+ * @param    lista    ponteiro para a estrutura Lista.
  */
 void destroi_lista(TLista *lista)
 {
