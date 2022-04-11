@@ -9,12 +9,12 @@
 #define DOIS 2
 #define LIMITE_NUMERO_ARQUIVO 99
 #define VALOR_INICIAL 0
-#define NOME_ARQUIVO_USUARIO "..//..//Arquivos//%s.txt"
-#define NOME_ARQUIVO_USUARIO_SAIDA "..//..//Arquivos//%s-saida.txt"
+#define NOME_ARQUIVO_USUARIO "..//arquivos//%s.txt"
+#define NOME_ARQUIVO_USUARIO_SAIDA "..//arquivos//%s-saida.txt"
 #define TAMANHO_STRING_ARQUIVO 31
 #define NAO_ENCONTRADO "\nO arquivo com nome '%s' não pode ser encontrado.\n"
 #define ERRO_FORMATO "\nErro de formato. Tenha certeza que o arquivo segue o formato especificado.\n"
-#define NOME_ARQUIVO "..//..//Arquivos//teste%02d.txt"
+#define NOME_ARQUIVO "..//Arquivos//teste%02d.txt"
 #define ERRO_CRIAR_ARQUIVO "\nErro ao tentar criar arquivo.\n"
 #define NUMERO_INVALIDO "Número inválido. Deve ser entre 0 e 99"
 
@@ -23,50 +23,53 @@
  * dentro de um arquivo com nome "testeNN" onde "NN" é um número especificado pelo usuário.
  * Como explicado anteriormente o número tem que seguir o formato "NN", ou seja, só números de 2 algarismos são válidos.
  */
-void gera_arquivo(unsigned int qtd_operacoes, unsigned int num_arquivo, unsigned int tamanho_lista)
+bool gera_arquivo(unsigned int qtd_operacoes, unsigned int num_arquivo, unsigned int tamanho_lista)
 {
     // Checando se o número informado pelo usuário é válido.
     if (num_arquivo > LIMITE_NUMERO_ARQUIVO)
     {
         printf(NUMERO_INVALIDO);
-        return;
+        return false;
     }
 
     char nome_arquivo[TAMANHO_STRING_ARQUIVO];
-    FILE *arquivo;
+    FILE *pArquivo;
 
     // Criando "seed" para o "rand()" método para tornar a ordem da geração de números aleatória.
     srand(time(NULL));
-    sprintf(nome_arquivo, NOME_ARQUIVO, num_arquivo); // Criando caminho para o arquivo.
-    arquivo = fopen(nome_arquivo, "w"); // Criando e abrindo o arquivo para colocar as informações.
+    sprintf(nome_arquivo, NOME_ARQUIVO, num_arquivo); // Criando caminho para o pArquivo.
+    pArquivo = fopen(nome_arquivo, "w"); // Criando e abrindo o pArquivo para colocar as informações.
 
-    // Caso ocorra um erro ao tentar criar o arquivo.
-    if (!arquivo)
+    // Caso ocorra um erro ao tentar criar o pArquivo.
+    if (!pArquivo)
     {
         printf(ERRO_CRIAR_ARQUIVO);
-        return;
+        return false;
     }
 
     // Escrevendo dados informados pelo usuário.
-    fprintf(arquivo, "%d", tamanho_lista);
-    fprintf(arquivo, "%s", "\n");
-    fprintf(arquivo, "%d", qtd_operacoes);
-    fprintf(arquivo, "%s", "\n");
+    fprintf(pArquivo, "%d", tamanho_lista);
+    fprintf(pArquivo, "%s", "\n");
+    fprintf(pArquivo, "%d", qtd_operacoes);
+    fprintf(pArquivo, "%s", "\n");
 
     // Escrevendo escolha de operações (inserção ou remoção) e a quantidade que as mesmas serão utilizadas de forma
     // aleatória.
     for (int j = 0; j < qtd_operacoes; j++)
     {
-        fprintf(arquivo, "%d", rand() % DOIS);
-        fprintf(arquivo, "%s", " ");
-        fprintf(arquivo, "%d", rand() % CEM);
+        fprintf(pArquivo, "%d", rand() % DOIS);
+        fprintf(pArquivo, "%s", " ");
+        fprintf(pArquivo, "%d", rand() % CEM);
         if (j != (qtd_operacoes - UM))
         {
-            fprintf(arquivo, "%s", "\n");
+            fprintf(pArquivo, "%s", "\n");
         }
     }
 
-    fclose(arquivo);
+    fclose(pArquivo);
+    pArquivo = NULL;
+
+    return true;
 }
 
 /*

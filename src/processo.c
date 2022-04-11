@@ -12,7 +12,7 @@
  */
 TProcesso *inicializa_processo()
 {
-    TProcesso *processo = malloc(sizeof *processo);
+    TProcesso *processo = (TProcesso *) malloc(sizeof *processo);
     processo->PID = UM + rand();
     processo->prioridade = UM + (rand() % LIMITE);
     inicializa_tempo(processo);

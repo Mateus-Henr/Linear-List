@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 #include "processo.h"
 
 /*
@@ -26,8 +28,8 @@ typedef struct
     struct TCelula *celulas;
     Cursor primeiro;
     Cursor ultimo;
-    unsigned int celulasDisp;
-    unsigned int numCelOcupados;
+    int celulasDisp;
+    int numCelOcupados;
 } TLista;
 
 // Função de inicialização
@@ -39,13 +41,13 @@ void destroi_lista(TLista *lista);
 
 // Operações
 
-unsigned int insere_na_lista(TLista *lista);
+bool insere_na_lista(TLista *lista);
 
-unsigned int remove_da_lista(TLista *lista);
+bool remove_da_lista(TLista *lista);
 
 void imprime_conteudo(TLista *lista);
 
 
 // Getter
 
-unsigned int get_numCelOcupados(TLista *lista);
+int get_numCelOcupados(TLista *lista);
