@@ -96,7 +96,7 @@ void arquivo_output(char *nome_arquivo, double tempo_gasto)
  * sobre. Tem como retorno o ponteiro da lista onde foram realizadas as operações especificadas no arquivo.
  * Retorna um unsigned int para in informar se o metódo foi executado com sucesso.
 */
-unsigned int ler_arquivo(TLista *lista, char *nome_arquivo)
+unsigned int ler_arquivo(Lista *lista, char *nome_arquivo)
 {
     unsigned int num_operacoes;
     unsigned int tamanho_lista;
@@ -129,7 +129,7 @@ unsigned int ler_arquivo(TLista *lista, char *nome_arquivo)
         return 0;
     }
 
-    inicializa_lista(lista, tamanho_lista);
+    inicializaLista(lista, tamanho_lista);
 
     // Criando loop para realizar a quantidade de operações da opção escolhida pelo usuário.
     for (int i = VALOR_INICIAL; i < num_operacoes; i++)
@@ -145,7 +145,7 @@ unsigned int ler_arquivo(TLista *lista, char *nome_arquivo)
 
         for (int j = VALOR_INICIAL; j < qtd_operacao; j++)
         {
-            operacao ? remove_da_lista(lista) : insere_na_lista(lista);
+            operacao ? removeFrente(lista) : insereOrdenado(lista);
         }
     }
 

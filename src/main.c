@@ -21,9 +21,9 @@
 
 void mostrar_opcoes();
 
-clock_t inicializa_relogio();
+double inicializa_relogio();
 
-double finaliza_relogio(clock_t tempo_inicial);
+double finaliza_relogio(double tempo_inicial);
 
 void limpar_stdin();
 
@@ -39,7 +39,7 @@ int main(void)
     // Usando loop para lidar com input inválidos e repetições.
     while (loop)
     {
-        int escolha = INVALIDO;
+        int escolha;
 
         printf("\n\nSimulador de sistema de gerenciamento de processos");
         printf("\nDigite a opcao:");
@@ -62,7 +62,7 @@ int main(void)
                 printf("\nInformacoes de arquivo");
                 printf("\n[1] Criar\n[2] Ler Arquivo\n");
 
-                int opcao = INVALIDO;
+                int opcao;
                 if (!scanf("%d", &opcao))
                 {
                     printf(OPCAO_INVALIDA);
@@ -74,7 +74,7 @@ int main(void)
                 if (opcao == PRIMEIRA_OPCAO)
                 {
                     // Definido variáveis.
-                    int qtd_operacoes = INVALIDO;
+                    int qtd_operacoes;
                     int num_arquivo;
                     int tamanho_lista;
 
@@ -121,10 +121,10 @@ int main(void)
                     scanf("%s", nome_arquivo);
 
                     // Inicializando clock.
-                    clock_t tempo_inicial = inicializa_relogio();
+                    double tempo_inicial = inicializa_relogio();
 
                     // Inicializando lista que será usada para receber informações do arquivo.
-                    TLista lista;
+                    Lista lista;
 
                     // Checando se ouve algum problem durante a leitura do arquivo.
                     if (!ler_arquivo(&lista, nome_arquivo))
@@ -153,10 +153,10 @@ int main(void)
                     // Opção para o usuário decidir se ele deseja printar a lista.
                     if (imprime_lista)
                     {
-                        imprime_conteudo(&lista);
+                        imprimeData(&lista);
                     }
 
-                    destroi_lista(&lista);
+                    destroiLista(&lista);
                     // -------------------------------------------------------------------------------------------------
                 }
                 else // Caso a opção for inválida.
@@ -169,8 +169,8 @@ int main(void)
             case SEGUNDA_OPCAO: // Opção 2 (valores vindos do usuário)
                 // --------------------- Recebendo valores do usuário e aplicando eles na lista ------------------------
                 printf("\nInsercao de valores pelo usuario\n");
-                int tamanho_lista;
 
+                int tamanho_lista;
                 // Recebendo tamanho da lista e lidando com valores inválidos.
                 printf("\nDigite o tamanho da lista: \n");
                 if (!scanf("%d", &tamanho_lista) || tamanho_lista < ZERO)
@@ -181,11 +181,11 @@ int main(void)
                 }
 
                 // Inicializando lista.
-                TLista lista;
-                inicializa_lista(&lista, tamanho_lista);
+                Lista lista;
+                inicializaLista(&lista, tamanho_lista);
 
                 // Variável "flag" para o loop.
-                bool continuar = true;
+                int continuar = 1;
 
                 // Loop para receber múltiplos valores de remoção ou inserção.
                 while (continuar)
@@ -213,14 +213,14 @@ int main(void)
                             continue;
                         }
 
-                        clock_t tempo_inicial = inicializa_relogio();
+                        double tempo_inicial = inicializa_relogio();
 
                         // Usado para detectar se a lista estiver cheia após a realização da operação.
                         unsigned int qtd_insercoes = ZERO;
 
                         for (int i = VALOR_INICIAL; i < qtd_operacoes; i++)
                         {
-                            if (insere_na_lista(&lista))
+                            if (insereOrdenado(&lista))
                             {
                                 qtd_insercoes++;
                             }
@@ -245,7 +245,7 @@ int main(void)
 
                         if (imprime_lista)
                         {
-                            imprime_conteudo(&lista);
+                            imprimeData(&lista);
                         }
                     }
                     else if (insere_ou_remove == UM) // Opção se o usuário escolher remoção.
@@ -258,14 +258,14 @@ int main(void)
                             continue;
                         }
 
-                        clock_t tempo_inicial = inicializa_relogio();
+                        double tempo_inicial = inicializa_relogio();
 
                         // Usado para detectar se a lista estiver vazia após a realização da operação.
                         unsigned int qtd_remocoes = ZERO;
 
                         for (int i = VALOR_INICIAL; i < qtd_operacoes; i++)
                         {
-                            if (remove_da_lista(&lista))
+                            if (removeFrente(&lista))
                             {
                                 qtd_remocoes++;
                             }
@@ -291,7 +291,7 @@ int main(void)
 
                         if (imprime_lista)
                         {
-                            imprime_conteudo(&lista);
+                            imprimeData(&lista);
                         }
                     }
                     else
@@ -310,18 +310,14 @@ int main(void)
                         limpar_stdin();
                     }
 
-                    if (!continuar) // Parar o loop.
-                    {
-                        continuar = false;
-                    }
-                    else if (continuar != UM) // Continuar o loop.
+                    if (continuar != UM) // Continuar o loop.
                     {
                         printf(OPCAO_INVALIDA);
-                        continuar = true;
+                        continuar = UM;
                         limpar_stdin();
                     }
                 }
-                destroi_lista(&lista);
+                destroiLista(&lista);
                 // -----------------------------------------------------------------------------------------------------
                 break;
             case MOSTRAR_OPCOES: // Opção 3 (mostrar opções).
@@ -367,21 +363,18 @@ void limpar_stdin(void)
 /*
  * Função usada para iniciar o clock.
  */
-clock_t inicializa_relogio(void)
+double inicializa_relogio(void)
 {
-    clock_t tempo_inicial = clock();
-
-    return tempo_inicial;
+    return clock();
 }
 
 
 /*
  * Função usada para finalizar o clock e calcular o tempo total.
  */
-double finaliza_relogio(clock_t tempo_inicial)
+double finaliza_relogio(double tempo_inicial)
 {
-    clock_t tempo_final = clock();
-    double tempo_gasto = (double) (tempo_final - tempo_inicial) / CLOCKS_PER_SEC;
+    double tempo_gasto = (clock() - tempo_inicial) / CLOCKS_PER_SEC;
 
     return tempo_gasto;
 }

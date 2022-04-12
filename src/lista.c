@@ -20,19 +20,19 @@
  * estrutura. Após a alocação são inicializadas "Celulas" com cursores predefinidos aos quais
  * apontam para uma próxima célula e uma célula anterior, esses cursores serão posições no array.
  * Então essas "Celulas" são colocadas no array.
- * Há também a inicialização de valores iniciais para as variáveis da estrutura "TLista".
+ * Há também a inicialização de valores iniciais para as variáveis da estrutura "Lista".
  */
-void inicializa_lista(TLista *lista, unsigned int tamanho)
+void inicializaLista(Lista *lista, unsigned int tamanho)
 {
     // Alocando espaço na memória para o array que compõe a estrutura lista (tamanho informado pelo usuário).
-    lista->celulas = (struct TCelula *) malloc(tamanho * sizeof(TCelula));
+    lista->celulas = (Celula *) malloc(tamanho * sizeof(Celula));
 
     // Inicialização das células vazias definindo os cursores iniciais para cada uma delas.
     // Um cursor apontará para a próxima célula e o outro apontará para a célula anterior.
     // Extremidades são iguais a "-1".
     for (int posicao = VALOR_INICIAL; posicao < tamanho; posicao++)
     {
-        TCelula celula;
+        Celula celula;
 
         celula.ant = MENOS_UM;
 
@@ -46,7 +46,7 @@ void inicializa_lista(TLista *lista, unsigned int tamanho)
         }
 
         celula.processo = NULL;
-        ((TCelula *) lista->celulas)[posicao] = celula; // Colocando célula no array.
+        ((Celula *) lista->celulas)[posicao] = celula; // Colocando célula no array.
     }
 
     // Inicializando demais variáveis lista.
@@ -62,7 +62,7 @@ void inicializa_lista(TLista *lista, unsigned int tamanho)
  * @param    lista    ponteiro para a estrutura Lista.
  * @return            número de células ocupadas.
  */
-int get_numCelOcupados(TLista *lista)
+int tamanho(Lista *lista)
 {
     return lista->numCelOcupados;
 }
@@ -76,13 +76,13 @@ int get_numCelOcupados(TLista *lista)
  * pelo PID do processo de cada célula. Em outras palavras, os cursores das células serão usados para ordenar as mesmas
  * na lista de forma que o PID esteja em uma ordem crescente.
  */
-bool insere_na_lista(TLista *lista)
+bool insereOrdenado(Lista *lista)
 {
     // Checando se há célula disponível.
     if (lista->celulasDisp == INVALIDO)
     {
         // Lista cheia.
-        if (get_numCelOcupados(lista) == lista->tamanho)
+        if (tamanho(lista) == lista->tamanho)
         {
             return false;
         }
@@ -92,13 +92,13 @@ bool insere_na_lista(TLista *lista)
 
     // Inicializando processo para adicionar a uma célula.
     TProcesso *processo_para_adicionar = inicializa_processo();
-    TCelula *celulas = (TCelula *) lista->celulas;
+    Celula *celulas = (Celula *) lista->celulas;
     int proxCelulaDisp = celulas[lista->celulasDisp].prox;
 
     // Colocando o processo na posição disponível encontrada.
     celulas[lista->celulasDisp].processo = processo_para_adicionar;
 
-    if (get_numCelOcupados(lista) == NENHUM_ELEMENTO)
+    if (tamanho(lista) == NENHUM_ELEMENTO)
     {
         celulas[lista->celulasDisp].prox = MENOS_UM;
         lista->primeiro = lista->celulasDisp;
@@ -147,40 +147,37 @@ bool insere_na_lista(TLista *lista)
  * @param    lista    ponteiro para a estrutura Lista.
  * @return            sucesso na operação.
  */
-bool remove_da_lista(TLista *lista)
+bool removeFrente(Lista *lista)
 {
     // Checando se a lista está vazia.
-    if (get_numCelOcupados(lista) == NENHUM_ELEMENTO)
+    if (tamanho(lista) == NENHUM_ELEMENTO)
     {
         return false;
     }
 
-    TCelula *celulas = (TCelula *) lista->celulas;
+    Celula *celulas = (Celula *) lista->celulas;
 
     // Liberando o processo na memória.
     free(celulas[lista->primeiro].processo);
     celulas[lista->primeiro].processo = NULL;
 
+    int tempPrimeiro = lista->primeiro;
+    int tempPrimeiroProx = celulas[lista->primeiro].prox;
+
+    // Apontando para a próxima célula disponível.
+    celulas[lista->primeiro].ant = INICIO_DA_LISTA;
+    celulas[lista->primeiro].prox = lista->celulasDisp;
+
     // Checando se a célula atual não é a última.
-    if (celulas[lista->primeiro].prox != FINAL_DA_LISTA)
+    if (tempPrimeiroProx != FINAL_DA_LISTA)
     {
-        int tempPrimeiroProx = celulas[lista->primeiro].prox;
-
         // Tornando o próximo elemento início da lista.
-        celulas[celulas[lista->primeiro].prox].ant = INICIO_DA_LISTA;
-
-        // Apontando para a próxima célula disponível.
-        celulas[lista->primeiro].prox = lista->celulasDisp;
-        celulas[lista->primeiro].ant = INICIO_DA_LISTA;
-
-        lista->celulasDisp = lista->primeiro;
-        lista->primeiro = tempPrimeiroProx; // Alterando cursor.
+        celulas[tempPrimeiroProx].ant = INICIO_DA_LISTA;
+        lista->primeiro = tempPrimeiroProx;
+        lista->celulasDisp = tempPrimeiro;
     }
     else // Caso e a última célula na lista.
     {
-        celulas[lista->primeiro].prox = lista->celulasDisp;
-        celulas[lista->primeiro].ant = INICIO_DA_LISTA;
-        lista->celulasDisp = lista->primeiro;
         lista->ultimo = lista->primeiro;
     }
 
@@ -196,16 +193,16 @@ bool remove_da_lista(TLista *lista)
  *
  * @param    lista    ponteiro para a estrutura Lista.
  */
-void imprime_conteudo(TLista *lista)
+void imprimeData(Lista *lista)
 {
     // Caso não haja nenhum elemento.
-    if (get_numCelOcupados(lista) == NENHUM_ELEMENTO)
+    if (tamanho(lista) == NENHUM_ELEMENTO)
     {
         printf(LISTA_VAZIA);
         return;
     }
 
-    TCelula *celulas = (TCelula *) lista->celulas;
+    Celula *celulas = (Celula *) lista->celulas;
     int elemento_atual = lista->primeiro;
 
     // Usando loop até chegar ao final da lista.
@@ -226,9 +223,9 @@ void imprime_conteudo(TLista *lista)
  *
  * @param    lista    ponteiro para a estrutura Lista.
  */
-void destroi_lista(TLista *lista)
+void destroiLista(Lista *lista)
 {
-    TCelula *celulas = (TCelula *) lista->celulas;
+    Celula *celulas = (Celula *) lista->celulas;
 
     for (int i = VALOR_INICIAL; i < lista->tamanho; i++)
     {

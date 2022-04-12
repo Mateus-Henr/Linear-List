@@ -15,39 +15,39 @@
 
 typedef int Cursor;
 
-typedef struct Celula
+typedef struct
 {
     TProcesso *processo;
-    Cursor prox;
     Cursor ant;
-} TCelula;
+    Cursor prox;
+} Celula;
 
 typedef struct
 {
     unsigned int tamanho;
-    struct TCelula *celulas;
+    Celula *celulas;
     Cursor primeiro;
     Cursor ultimo;
-    int celulasDisp;
+    Cursor celulasDisp;
     int numCelOcupados;
-} TLista;
+} Lista;
 
 // Função de inicialização
 
-void inicializa_lista(TLista *lista, unsigned int tamanho);
+void inicializaLista(Lista *lista, unsigned int tamanho);
 
-void destroi_lista(TLista *lista);
+void destroiLista(Lista *lista);
 
 
 // Operações
 
-bool insere_na_lista(TLista *lista);
+bool insereOrdenado(Lista *lista);
 
-bool remove_da_lista(TLista *lista);
+bool removeFrente(Lista *lista);
 
-void imprime_conteudo(TLista *lista);
+void imprimeData(Lista *lista);
 
 
 // Getter
 
-int get_numCelOcupados(TLista *lista);
+int tamanho(Lista *lista);
