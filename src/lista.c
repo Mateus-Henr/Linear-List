@@ -15,25 +15,24 @@
 #define LISTA_VAZIA "Lista Vazia!\n"
 #define PRINT_ELEMENTO "\n\nPosicao elemento = %d\nPID = %d\nant = %d | prox = %d\n"
 
+
 /*
- * Essa função é usada para inicializar uma lista. Primeiramente ocorre alocações na memória do array contido nessa
- * estrutura. Após a alocação são inicializadas "Celulas" com cursores predefinidos aos quais
- * apontam para uma próxima célula e uma célula anterior, esses cursores serão posições no array.
- * Então essas "Celulas" são colocadas no array.
- * Há também a inicialização de valores iniciais para as variáveis da estrutura "Lista".
+ * Inicializa a estrutura Lista e seus componentes.
+ *
+ * @param    lista      ponteiro para a estrutura Lista.
+ * @param    tamanho    tamanho do array que armazena os elementos da lista.
  */
 void inicializaLista(Lista *lista, unsigned int tamanho)
 {
     // Alocando espaço na memória para o array que compõe a estrutura lista (tamanho informado pelo usuário).
     lista->celulas = (Celula *) malloc(tamanho * sizeof(Celula));
 
-    // Inicialização das células vazias definindo os cursores iniciais para cada uma delas.
-    // Um cursor apontará para a próxima célula e o outro apontará para a célula anterior.
-    // Extremidades são iguais a "-1".
+    // Inicialização das células.
     for (int posicao = VALOR_INICIAL; posicao < tamanho; posicao++)
     {
         Celula celula;
 
+        celula.processo = NULL;
         celula.ant = MENOS_UM;
 
         if (posicao == (tamanho - UM))
@@ -45,13 +44,13 @@ void inicializaLista(Lista *lista, unsigned int tamanho)
             celula.prox = posicao + UM;
         }
 
-        celula.processo = NULL;
-        ((Celula *) lista->celulas)[posicao] = celula; // Colocando célula no array.
+        // Colocando célula no array.
+        ((Celula *) lista->celulas)[posicao] = celula;
     }
 
-    // Inicializando demais variáveis lista.
-    lista->numCelOcupados = NENHUM_ELEMENTO;
+    // Inicializando demais variáveis da lista.
     lista->tamanho = tamanho;
+    lista->numCelOcupados = NENHUM_ELEMENTO;
     lista->celulasDisp = NENHUM_ELEMENTO;
 }
 
@@ -69,12 +68,9 @@ int tamanho(Lista *lista)
 
 
 /*
- * Função usada para adicionar um elemento na lista.
- * Primeiramente tentamos achar uma célula disponível (posição no vetor) para adicionar um processo que é gerado pelo
- * método "inicializa_processo()".
- * Como a lista deve se manter ordenada os elementos já são colocados nas posições corretas, sendo as mesmas definidas
- * pelo PID do processo de cada célula. Em outras palavras, os cursores das células serão usados para ordenar as mesmas
- * na lista de forma que o PID esteja em uma ordem crescente.
+ * Cria um processo aleatório, e insere o mesmo ordenadamente na lista.
+ *
+ * @param    lista    ponteiro para a estrutura Lista.
  */
 bool insereOrdenado(Lista *lista)
 {
@@ -90,14 +86,13 @@ bool insereOrdenado(Lista *lista)
         lista->celulasDisp = ELEMENTO_INICIAL;
     }
 
-    // Inicializando processo para adicionar a uma célula.
-    TProcesso *processo_para_adicionar = inicializa_processo();
     Celula *celulas = (Celula *) lista->celulas;
     int proxCelulaDisp = celulas[lista->celulasDisp].prox;
 
-    // Colocando o processo na posição disponível encontrada.
-    celulas[lista->celulasDisp].processo = processo_para_adicionar;
+    // Inicia um processo e adiciona-o no array.
+    celulas[lista->celulasDisp].processo = inicializa_processo();
 
+    // Primeiro elemento a ser adicionado na lista.
     if (tamanho(lista) == NENHUM_ELEMENTO)
     {
         celulas[lista->celulasDisp].prox = MENOS_UM;
@@ -126,8 +121,9 @@ bool insereOrdenado(Lista *lista)
             currElement = celulas[currElement].prox;
         }
 
-        celulas[celulas[currElement].ant].prox = lista->celulasDisp;
         int antCurrElement = celulas[currElement].ant;
+
+        celulas[antCurrElement].prox = lista->celulasDisp;
         celulas[currElement].ant = lista->celulasDisp;
 
         celulas[lista->celulasDisp].ant = antCurrElement;
@@ -164,11 +160,11 @@ bool removeFrente(Lista *lista)
     int tempPrimeiro = lista->primeiro;
     int tempPrimeiroProx = celulas[lista->primeiro].prox;
 
-    // Apontando para a próxima célula disponível.
+    // Apontando a célula deletada para a próxima célula disponível.
     celulas[lista->primeiro].ant = INICIO_DA_LISTA;
     celulas[lista->primeiro].prox = lista->celulasDisp;
 
-    // Checando se a célula atual não é a última.
+    // Se a célula deletada não é a última.
     if (tempPrimeiroProx != FINAL_DA_LISTA)
     {
         // Tornando o próximo elemento início da lista.
@@ -176,12 +172,11 @@ bool removeFrente(Lista *lista)
         lista->primeiro = tempPrimeiroProx;
         lista->celulasDisp = tempPrimeiro;
     }
-    else // Caso e a última célula na lista.
+    else
     {
         lista->ultimo = lista->primeiro;
     }
 
-    // Após remover o elemento temos que decrementar o número de células ocupadas.
     lista->numCelOcupados--;
 
     return true;
@@ -205,7 +200,7 @@ void imprimeData(Lista *lista)
     Celula *celulas = (Celula *) lista->celulas;
     int elemento_atual = lista->primeiro;
 
-    // Usando loop até chegar ao final da lista.
+    // Iterando na lista.
     while (elemento_atual != FINAL_DA_LISTA)
     {
         printf(PRINT_ELEMENTO,
