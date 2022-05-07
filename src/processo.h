@@ -12,6 +12,7 @@ typedef struct Processo
     struct tm *hora;
 } TProcesso;
 
+
 // Funções de inicialização
 
 TProcesso *inicializa_processo();
@@ -23,11 +24,10 @@ void inicializa_tempo(TProcesso *processo);
 
 unsigned int get_PID(TProcesso *processo);
 
-void set_PID(TProcesso *processo, unsigned int novo_PID);
+void setPID(TProcesso *processo, unsigned int novoPID);
 
-unsigned int get_prioridade(TProcesso *processo);
+unsigned int getPrioridade(TProcesso *processo);
 
-void set_prioridade(TProcesso *processo, unsigned int nova_prioridade);
+void setPrioridade(TProcesso *processo, unsigned int novaPrioridade);
 
-// Retorna hora no formato "Www Mmm dd hh:mm:ss yyyy" da função "asctime()" oferecida pela biblioteca "time.h".
 char *get_hora(TProcesso *processo);

@@ -11,7 +11,6 @@
 #define VALOR_INICIAL 0
 #define NENHUM_ELEMENTO 0
 #define UM 1
-#define ELEMENTO_INICIAL 0
 #define LISTA_VAZIA "Lista Vazia!\n"
 #define PRINT_ELEMENTO "\n\nPosicao elemento = %d\nPID = %d\nant = %d | prox = %d\n"
 
@@ -77,13 +76,7 @@ bool insereOrdenado(Lista *lista)
     // Checando se há célula disponível.
     if (lista->celulasDisp == INVALIDO)
     {
-        // Lista cheia.
-        if (tamanho(lista) == lista->tamanho)
-        {
-            return false;
-        }
-
-        lista->celulasDisp = ELEMENTO_INICIAL;
+        return false;
     }
 
     Celula *celulas = (Celula *) lista->celulas;
@@ -170,13 +163,9 @@ bool removeFrente(Lista *lista)
         // Tornando o próximo elemento início da lista.
         celulas[tempPrimeiroProx].ant = INICIO_DA_LISTA;
         lista->primeiro = tempPrimeiroProx;
-        lista->celulasDisp = tempPrimeiro;
-    }
-    else
-    {
-        lista->ultimo = lista->primeiro;
     }
 
+    lista->celulasDisp = tempPrimeiro;
     lista->numCelOcupados--;
 
     return true;

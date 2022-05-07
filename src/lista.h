@@ -32,6 +32,7 @@ typedef struct
     int numCelOcupados;
 } Lista;
 
+
 // Função de inicialização
 
 void inicializaLista(Lista *lista, unsigned int tamanho);

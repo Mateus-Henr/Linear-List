@@ -4,8 +4,8 @@
  * Funções abstratas relacionadas a arquivos.
  */
 
-bool gera_arquivo(unsigned int qtd_operacoes, unsigned int num_arquivo, unsigned int tamanho_lista);
+bool geraArquivo(unsigned int qtdOperacoes, unsigned int numArquivo, unsigned int tamanhoLista);
 
-void arquivo_output(char *nome_arquivo, double tempo_gasto);
+void arquivoOutput(char *nomeArquivo, double tempoGasto);
 
-unsigned int ler_arquivo(Lista *lista, char *nome_arquivo);
+unsigned int lerArquivo(Lista *lista, char *nomeArquivo);
