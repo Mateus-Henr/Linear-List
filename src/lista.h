@@ -52,3 +52,5 @@ void imprimeData(Lista *lista);
 // Getter
 
 int tamanho(Lista *lista);
+
+void check(Lista *lista);

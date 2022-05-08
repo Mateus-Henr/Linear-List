@@ -92,7 +92,7 @@ bool insereOrdenado(Lista *lista)
         lista->primeiro = lista->celulasDisp;
         lista->ultimo = lista->celulasDisp;
     }
-    else if (get_PID(celulas[lista->celulasDisp].processo) < get_PID(celulas[lista->primeiro].processo))
+    else if (get_PID(celulas[lista->celulasDisp].processo) <= get_PID(celulas[lista->primeiro].processo))
     {
         celulas[lista->celulasDisp].prox = lista->primeiro;
         celulas[lista->primeiro].ant = lista->celulasDisp;
@@ -107,20 +107,20 @@ bool insereOrdenado(Lista *lista)
     }
     else
     {
-        int currElement = lista->primeiro;
+        int elementoAtual = lista->primeiro;
 
-        while (get_PID(celulas[lista->celulasDisp].processo) > get_PID(celulas[currElement].processo))
+        while (get_PID(celulas[lista->celulasDisp].processo) >= get_PID(celulas[elementoAtual].processo))
         {
-            currElement = celulas[currElement].prox;
+            elementoAtual = celulas[elementoAtual].prox;
         }
 
-        int antCurrElement = celulas[currElement].ant;
+        int antElementoAtual = celulas[elementoAtual].ant;
 
-        celulas[antCurrElement].prox = lista->celulasDisp;
-        celulas[currElement].ant = lista->celulasDisp;
+        celulas[antElementoAtual].prox = lista->celulasDisp;
+        celulas[elementoAtual].ant = lista->celulasDisp;
 
-        celulas[lista->celulasDisp].ant = antCurrElement;
-        celulas[lista->celulasDisp].prox = currElement;
+        celulas[lista->celulasDisp].ant = antElementoAtual;
+        celulas[lista->celulasDisp].prox = elementoAtual;
     }
 
     lista->celulasDisp = proxCelulaDisp;
@@ -187,17 +187,17 @@ void imprimeData(Lista *lista)
     }
 
     Celula *celulas = (Celula *) lista->celulas;
-    int elemento_atual = lista->primeiro;
+    int elementoAtual = lista->primeiro;
 
     // Iterando na lista.
-    while (elemento_atual != FINAL_DA_LISTA)
+    while (elementoAtual != FINAL_DA_LISTA)
     {
         printf(PRINT_ELEMENTO,
-               elemento_atual, celulas[elemento_atual].processo->PID,
-               celulas[elemento_atual].ant,
-               celulas[elemento_atual].prox);
+               elementoAtual, celulas[elementoAtual].processo->PID,
+               celulas[elementoAtual].ant,
+               celulas[elementoAtual].prox);
 
-        elemento_atual = celulas[elemento_atual].prox;
+        elementoAtual = celulas[elementoAtual].prox;
     }
 }
 
